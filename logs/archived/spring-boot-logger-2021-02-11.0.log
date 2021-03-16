@@ -1,0 +1,70 @@
+2021-02-11 01:55:58,959 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 5392 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 01:55:58,962 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 01:55:58,963 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 01:56:04,981 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 6.457 seconds (JVM running for 8.455)
+2021-02-11 02:08:42,900 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 5392 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:08:42,900 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:08:42,901 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:08:44,307 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.44 seconds (JVM running for 767.781)
+2021-02-11 02:08:59,175 INFO com.doemais.api.controller.AnuncioController [http-nio-8081-exec-2] Consultando o historico de anuncios por ID1
+2021-02-11 02:09:38,447 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 5392 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:09:38,447 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:09:38,448 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:09:40,151 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.78 seconds (JVM running for 823.626)
+2021-02-11 02:10:42,648 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 5392 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:10:42,648 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:10:42,649 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:10:43,932 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.312 seconds (JVM running for 887.407)
+2021-02-11 02:10:56,095 INFO com.doemais.api.controller.AnuncioController [http-nio-8081-exec-2] Cadastrando usuario
+2021-02-11 02:12:25,132 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 5392 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:12:25,132 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:12:25,133 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:12:26,600 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.506 seconds (JVM running for 990.074)
+2021-02-11 02:12:38,455 INFO com.doemais.api.controller.AnuncioController [http-nio-8081-exec-1] Cadastrando usuario
+2021-02-11 02:12:38,457 ERROR com.doemais.api.controller.AnuncioController [http-nio-8081-exec-1] Erro ao cadastrar
+2021-02-11 02:14:37,028 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 5392 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:14:37,028 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:14:37,028 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:14:38,604 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.629 seconds (JVM running for 1122.078)
+2021-02-11 02:15:22,670 INFO com.doemais.api.controller.AnuncioController [http-nio-8081-exec-1] Cadastrando anuncio
+2021-02-11 02:15:32,256 INFO com.doemais.api.controller.AnuncioController [http-nio-8081-exec-3] Cadastrando anuncio
+2021-02-11 02:15:32,315 ERROR com.doemais.api.controller.AnuncioController [http-nio-8081-exec-3] Erro ao cadastrar anuncio
+2021-02-11 02:20:23,929 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 5392 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:20:23,929 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:20:23,929 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:20:25,115 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.217 seconds (JVM running for 1468.59)
+2021-02-11 02:29:45,340 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 8636 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:29:45,343 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:29:45,344 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:29:50,537 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 5.633 seconds (JVM running for 7.079)
+2021-02-11 02:31:50,466 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 8636 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:31:50,466 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:31:50,466 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:31:52,134 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.704 seconds (JVM running for 128.675)
+2021-02-11 02:32:41,894 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 8636 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:32:41,895 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:32:41,895 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:32:43,348 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.485 seconds (JVM running for 179.889)
+2021-02-11 02:33:38,233 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 8636 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:33:38,233 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:33:38,234 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:33:39,667 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.466 seconds (JVM running for 236.208)
+2021-02-11 02:36:56,224 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 8636 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:36:56,225 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:36:56,225 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:36:57,731 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.546 seconds (JVM running for 434.272)
+2021-02-11 02:40:48,039 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 8636 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:40:48,040 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:40:48,040 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:41:52,946 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 8636 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:41:52,946 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:41:52,946 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:41:54,525 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.61 seconds (JVM running for 731.065)
+2021-02-11 02:42:37,938 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 8636 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:42:37,938 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:42:37,939 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:42:39,229 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.319 seconds (JVM running for 775.77)
+2021-02-11 02:42:52,907 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on DESKTOP-5LSHH6H with PID 8636 (C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+\target\classes started by Pichau in C:\Users\Pichau\Documents\workspace-spring-tool-suite-4-4.9.0.RELEASE\Backend\Doe+)
+2021-02-11 02:42:52,907 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-02-11 02:42:52,908 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-11 02:42:54,232 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.36 seconds (JVM running for 790.773)
