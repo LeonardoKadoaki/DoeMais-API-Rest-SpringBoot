@@ -11,7 +11,7 @@ import com.doemais.api.models.Anuncio;
 
 public interface AnuncioRepository extends JpaRepository<Anuncio, Long> {
 
-	Optional<Anuncio> findById(long id);
+	Optional<Anuncio> findByIdAnuncio(long id);
 
 	@Query(value = "select id_anuncio, data_criacao, data_expiracao, data_fim, descricao, titulo, id_status, id_categoria, id_usuario from anuncio where id_usuario = ?", nativeQuery = true)
 	Optional<List<Anuncio>> findAllByIdUsuario(long id);

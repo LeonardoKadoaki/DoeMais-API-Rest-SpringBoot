@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.doemais.api.exception.EntidadeNaoEncontradaException;
 import com.doemais.api.models.Categoria;
-import com.doemais.api.repository.CategoriaRepository;
 import com.doemais.api.services.CategoriaService;
 
 import io.swagger.annotations.Api;
@@ -34,9 +33,6 @@ import io.swagger.annotations.ApiOperation;
 public class CategoriaController {
 
 	Logger logger = LoggerFactory.getLogger(CategoriaController.class);
-	
-	@Autowired
-	CategoriaRepository categoriaRepository;
 	
 	@Autowired
 	CategoriaService categoriaService;

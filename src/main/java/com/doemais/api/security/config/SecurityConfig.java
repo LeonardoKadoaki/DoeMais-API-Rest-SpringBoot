@@ -54,13 +54,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-//		.antMatchers("/api/**").permitAll()
-		.antMatchers(HttpMethod.POST, "/api/usuario").permitAll()
-//		.antMatchers(HttpMethod.GET, "/api/anuncio/**").permitAll() //TODO APENAS PARA TESTE. REMOVER NA VERSÃO FINAL
-		.antMatchers(HttpMethod.POST, "/auth").permitAll()
-//		.antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
-		.antMatchers("/actuator/**").permitAll()
-//		.antMatchers(HttpMethod.GET, "/api/usuario/lista").hasRole("ADMIN")
+		.antMatchers("/api/**").permitAll()
+//		.antMatchers(HttpMethod.POST, "/api/usuario").permitAll()
+////		.antMatchers(HttpMethod.GET, "/api/anuncio/**").permitAll() //TODO APENAS PARA TESTE. REMOVER NA VERSÃO FINAL
+//		.antMatchers(HttpMethod.POST, "/auth").permitAll()
+////		.antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
+//		.antMatchers("/actuator/**").permitAll()
+////		.antMatchers(HttpMethod.GET, "/api/usuario/lista").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and().cors()
 		.and().csrf().disable()

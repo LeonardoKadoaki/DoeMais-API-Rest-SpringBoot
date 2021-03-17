@@ -116,7 +116,7 @@ public class AnuncioServiceTest {
 	@Test
 	public void TestBuscaAnuncioId() throws Exception {
 		
-		anuncioRepository.findById(1);
+		anuncioRepository.findByIdAnuncio(1);
 		
 	}
 	

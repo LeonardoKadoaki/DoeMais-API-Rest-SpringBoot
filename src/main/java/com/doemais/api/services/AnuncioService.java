@@ -65,7 +65,7 @@ public class AnuncioService {
 
 	public Anuncio buscarAnuncioPorId(long idAnuncio) throws EntidadeNaoEncontradaException {
 
-		return anuncioRepository.findById(idAnuncio).orElseThrow(
+		return anuncioRepository.findByIdAnuncio(idAnuncio).orElseThrow(
 				() -> new EntidadeNaoEncontradaException(String.format("Anúncio com id %d não encontrado", idAnuncio)));
 	}
 
@@ -124,11 +124,11 @@ public class AnuncioService {
 			throw new NullPointerException("O usuário não pode ser nulo ou vazio");
 		}
 		
-		categoriaRepository.findById(anuncio.getCategoria().getIdCategoria()).orElseThrow(
+		categoriaRepository.findByIdCategoria(anuncio.getCategoria().getIdCategoria()).orElseThrow(
 				() -> new EntidadeNaoEncontradaException(String.format("Categoria id %d inválida ou não encontrada", anuncio.getCategoria().getIdCategoria())));
 		
-		statusAnuncioRepository.findById(anuncio.getStatus().getIdStatus()).orElseThrow(
-				() -> new EntidadeNaoEncontradaException(String.format("Status do anuncio com id %d inválido ou não encontrado", anuncio.getStatus().getIdStatus())));
+		statusAnuncioRepository.findByIdStatus(anuncio.getStatus().getIdStatus()).orElseThrow(
+				() -> new EntidadeNaoEncontradaException(String.format("Status com id %d inválido ou não encontrado", anuncio.getStatus().getIdStatus())));
 		
 		usuarioRepository.findById(anuncio.getUsuarioAnunciante().getIdUsuario()).orElseThrow(
 				() -> new EntidadeNaoEncontradaException(String.format("Usuário com id %d inválido ou não encontrado", anuncio.getUsuarioAnunciante().getIdUsuario())));

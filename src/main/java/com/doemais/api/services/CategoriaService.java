@@ -20,7 +20,7 @@ public class CategoriaService {
 	}
 	
 	public Categoria buscarCategoriaPorId(long idCategoria) throws EntidadeNaoEncontradaException{
-		return categoriaRepository.findById(idCategoria).orElseThrow(
+		return categoriaRepository.findByIdCategoria(idCategoria).orElseThrow(
 				() -> new EntidadeNaoEncontradaException(String.format("Categoria id %d não encontrada", idCategoria)));
 	}
 	

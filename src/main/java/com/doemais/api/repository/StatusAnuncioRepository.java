@@ -8,5 +8,5 @@ import com.doemais.api.models.StatusAnuncio;
 
 public interface StatusAnuncioRepository extends JpaRepository<StatusAnuncio, Long>{
 	
-	 Optional<StatusAnuncio> findById(long id);
+	 Optional<StatusAnuncio> findByIdStatus(long id);
 }

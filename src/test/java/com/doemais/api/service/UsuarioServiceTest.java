@@ -94,7 +94,7 @@ public class UsuarioServiceTest {
     @Test
     public void  TestBuscaUsuarioId() throws Exception {
     	
-    	usuarioRepository.findById(1);
+    	usuarioRepository.findByIdUsuario(1);
     }
     
     

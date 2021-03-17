@@ -14,3 +14,87 @@
 2021-03-17 19:37:17,440 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
 2021-03-17 19:37:17,440 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
 2021-03-17 19:37:18,490 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 1.072 seconds (JVM running for 207.902)
+2021-03-17 19:47:14,447 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:47:14,447 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:47:14,447 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:47:15,386 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.96 seconds (JVM running for 804.798)
+2021-03-17 19:48:36,774 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:48:36,775 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:48:36,775 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:48:37,709 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.955 seconds (JVM running for 887.121)
+2021-03-17 19:49:11,610 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:49:11,610 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:49:11,610 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:49:12,508 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.919 seconds (JVM running for 921.92)
+2021-03-17 19:50:57,206 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:50:57,207 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:50:57,207 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:50:58,123 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.935 seconds (JVM running for 1027.534)
+2021-03-17 19:51:28,019 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:51:28,019 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:51:28,019 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:51:28,908 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.908 seconds (JVM running for 1058.32)
+2021-03-17 19:51:46,610 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:51:46,611 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:51:46,611 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:51:47,469 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.877 seconds (JVM running for 1076.881)
+2021-03-17 19:51:50,061 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:51:50,061 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:51:50,061 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:51:50,970 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.927 seconds (JVM running for 1080.381)
+2021-03-17 19:52:04,722 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:52:04,722 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:52:04,722 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:52:05,589 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.886 seconds (JVM running for 1095.001)
+2021-03-17 19:52:33,456 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:52:33,456 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:52:33,456 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:52:34,300 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.862 seconds (JVM running for 1123.711)
+2021-03-17 19:53:34,553 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:53:34,553 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:53:34,553 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:53:35,371 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.837 seconds (JVM running for 1184.783)
+2021-03-17 19:55:51,473 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:55:51,473 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:55:51,473 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:55:52,320 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.868 seconds (JVM running for 1321.731)
+2021-03-17 19:56:13,267 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:56:13,267 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:56:13,267 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:56:14,108 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.862 seconds (JVM running for 1343.52)
+2021-03-17 19:58:37,566 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:58:37,566 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:58:37,566 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:58:38,409 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.86 seconds (JVM running for 1487.821)
+2021-03-17 19:58:50,178 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:58:50,178 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:58:50,178 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:58:50,971 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.81 seconds (JVM running for 1500.383)
+2021-03-17 19:59:53,351 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 19:59:53,351 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 19:59:53,351 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 19:59:54,170 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.837 seconds (JVM running for 1563.581)
+2021-03-17 20:01:12,732 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 20:01:12,732 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 20:01:12,732 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 20:01:13,559 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.846 seconds (JVM running for 1642.971)
+2021-03-17 20:01:43,544 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 20:01:43,544 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 20:01:43,544 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 20:01:44,344 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.817 seconds (JVM running for 1673.756)
+2021-03-17 20:02:08,254 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 20:02:08,254 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 20:02:08,254 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 20:02:09,049 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.813 seconds (JVM running for 1698.461)
+2021-03-17 20:02:25,878 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 20:02:25,879 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 20:02:25,879 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 20:02:26,688 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.827 seconds (JVM running for 1716.1)
+2021-03-17 20:02:53,043 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 20:02:53,043 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 20:02:53,043 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 20:02:53,838 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.811 seconds (JVM running for 1743.249)
+2021-03-17 20:02:58,579 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DoeMaisApplication on Jarvis with PID 7176 (C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado\target\classes started by leoka in C:\Users\leoka\Desktop\Doe+\GIT4\ifsp-projeto-integrado)
+2021-03-17 20:02:58,579 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2021-03-17 20:02:58,579 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-17 20:02:59,375 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DoeMaisApplication in 0.812 seconds (JVM running for 1748.787)

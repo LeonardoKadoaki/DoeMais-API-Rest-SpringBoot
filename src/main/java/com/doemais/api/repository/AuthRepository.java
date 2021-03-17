@@ -14,8 +14,6 @@ public interface AuthRepository extends JpaRepository<Auth, Long> {
 
 	Optional<Auth> findByEmail(String email);
 	
-//	Auth findByEmail(String email);
-	
 	Auth findByUsuarioIdUsuario(long idUsuario);
 	
 	@Transactional

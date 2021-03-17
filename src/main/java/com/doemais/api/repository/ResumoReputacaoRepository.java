@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.doemais.api.models.ResumoReputacaoUsuario;
 
 public interface ResumoReputacaoRepository extends JpaRepository<ResumoReputacaoUsuario, Long>{
-	ResumoReputacaoUsuario findById(long id);
+	ResumoReputacaoUsuario findByIdResumo(long id);
 
 	Optional<ResumoReputacaoUsuario> findByUsuarioIdUsuario(long idusuario);
 }
