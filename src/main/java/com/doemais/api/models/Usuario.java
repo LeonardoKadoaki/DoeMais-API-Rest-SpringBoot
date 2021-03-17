@@ -2,14 +2,12 @@ package com.doemais.api.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -53,9 +51,6 @@ public class Usuario implements Serializable {
 	@Column(nullable = false)
 	private LocalDate dataCadastro;
 
-//	@NotNull
-//	private String dddCelular;
-
 	@NotNull
 	@Column(unique = true, length = 14)
 //	@Pattern(regexp = "\\(\\d{2}\\)\\d{5}-\\d{4}")
@@ -70,9 +65,8 @@ public class Usuario implements Serializable {
 	@Size(min = 0, max = 300, message = "O texto deve conter no máximo 300 caracteres")
 	private String sobre;
 
-	@Lob
-	@Column(nullable = true, columnDefinition = "blob")
-	private byte[] fotoPerfil;
+	@Column(nullable = true, length = 200)
+	private String fotoPerfil;
 
 	public Usuario() {
 		super();
@@ -112,8 +106,6 @@ public class Usuario implements Serializable {
 		this.genero = genero;
 		this.sobre = sobre;
 	}*/
-	
-	
 
 	public String getNome() {
 		return nome;
@@ -138,23 +130,10 @@ public class Usuario implements Serializable {
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-
-//	public String getDddCelular() {
-//		return dddCelular;
-//	}
-//
-//	public void setDddCelular(String dddCelular) {
-//		this.dddCelular = dddCelular;
-//	}
 	
-	
-	
-
 	public String getNumeroCelular() {
 		return numeroCelular;
 	}
-
-
 
 	public void setNumeroCelular(String numeroCelular) {
 		this.numeroCelular = numeroCelular;
@@ -208,11 +187,11 @@ public class Usuario implements Serializable {
 		this.sobre = sobre;
 	}
 
-	public byte[] getFotoPerfil() {
+	public String getFotoPerfil() {
 		return fotoPerfil;
 	}
 
-	public void setFotoPerfil(byte[] fotoPerfil) {
+	public void setFotoPerfil(String fotoPerfil) {
 		this.fotoPerfil = fotoPerfil;
 	}
 

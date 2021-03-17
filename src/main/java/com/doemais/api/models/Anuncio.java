@@ -44,7 +44,7 @@ public class Anuncio {
 	private LocalDateTime dataExpiracao;
 
 	@Column
-	private Date dataFim;
+	private LocalDateTime dataFim;
 
 	@Column
 	private double notaAvaliacao;
@@ -102,11 +102,11 @@ public class Anuncio {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public Date getDataFim() {
+	public LocalDateTime getDataFim() {
 		return dataFim;
 	}
 
-	public void setDataFim(Date dataFim) {
+	public void setDataFim(LocalDateTime dataFim) {
 		this.dataFim = dataFim;
 	}
 
