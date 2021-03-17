@@ -58,10 +58,9 @@ public class UsuarioService {
 	}
 
 	protected Usuario formataUsuario(CadastroDto cadastro) {
-		cadastro.setDataCadastro(LocalDate.now());
 
 		Usuario usuario = new Usuario(cadastro.getNome(), cadastro.getUserName(), cadastro.getCpf(),
-				cadastro.getDataNascimento(), cadastro.getDataCadastro(), cadastro.getNumeroCelular(),
+				cadastro.getDataNascimento(), LocalDate.now(), cadastro.getNumeroCelular(),
 				cadastro.getGenero(), cadastro.getSobre());
 
 		return usuario;

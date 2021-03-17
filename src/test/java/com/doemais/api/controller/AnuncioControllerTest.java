@@ -110,7 +110,7 @@ public class AnuncioControllerTest {
 		cadastroDto.setUserName("tehgo");
 		cadastroDto.setCpf("4454");
 		cadastroDto.setDataNascimento(LocalDate.of(1998, Month.DECEMBER, 22));
-		cadastroDto.setDataCadastro(LocalDate.of(2021, Month.MARCH, 6));
+//		cadastroDto.setDataCadastro(LocalDate.of(2021, Month.MARCH, 6));
 		cadastroDto.setNumeroCelular("352");
 		cadastroDto.setGenero("F");
 		cadastroDto.setSobre("Tesh");

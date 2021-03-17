@@ -34,8 +34,6 @@ public class CadastroDto {
 	@Past(message = "A data de nascimento não pode ser maior ou igual a data atual")
 	private LocalDate dataNascimento;
 
-	private LocalDate dataCadastro;
-
 	@NotBlank
 	private String numeroCelular;
 
@@ -92,14 +90,6 @@ public class CadastroDto {
 
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
-	}
-
-	public LocalDate getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(LocalDate dataCadastro) {
-		this.dataCadastro = dataCadastro;
 	}
 
 	public String getNumeroCelular() {

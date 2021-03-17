@@ -64,7 +64,7 @@ public class UsuarioServiceTest {
         DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		Date datas = formato.parse("11/02/2021");
 		Date datas2 = formato.parse("30/06/2021");
-        cadastroDto.setDataCadastro(LocalDate.of(1998, Month.DECEMBER, 22));
+//        cadastroDto.setDataCadastro(LocalDate.of(1998, Month.DECEMBER, 22));
         cadastroDto.setDataNascimento(LocalDate.of(2021, Month.DECEMBER, 22));
         cadastroDto.setGenero("M");
         cadastroDto.setNome("Teste");
@@ -76,7 +76,7 @@ public class UsuarioServiceTest {
         cadastroDto.setSenha("12345");
         
         usuario = new Usuario(cadastroDto.getNome(), cadastroDto.getUserName(), cadastroDto.getCpf(),
-				cadastroDto.getDataNascimento(), cadastroDto.getDataCadastro(), cadastroDto.getNumeroCelular(),
+				cadastroDto.getDataNascimento(), LocalDate.now(), cadastroDto.getNumeroCelular(),
 				cadastroDto.getGenero(), cadastroDto.getSobre());
         
         Usuario user = usuarioRepository.save(usuario);
@@ -105,15 +105,5 @@ public class UsuarioServiceTest {
     	usuarioRepository.findById(usuario.getIdUsuario());
     	authRepository.deleteByUsuarioIdUsuario(usuario.getIdUsuario());
     	usuarioRepository.deleteById(usuario.getIdUsuario());
-    }
-    
-   
-    
-    
-    
-	
-	
-	
-	
-	
+    }	
 }

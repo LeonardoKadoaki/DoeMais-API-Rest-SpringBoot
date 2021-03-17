@@ -79,7 +79,7 @@ public class UsuarioControllerTest {
 		cadastroDto.setUserName("tejfdo");
 		cadastroDto.setCpf("555");
 		cadastroDto.setDataNascimento(LocalDate.of(1998, Month.DECEMBER, 22));
-		cadastroDto.setDataCadastro(LocalDate.of(2021, Month.DECEMBER, 22));
+//		cadastroDto.setDataCadastro(LocalDate.of(2021, Month.DECEMBER, 22));
 		cadastroDto.setNumeroCelular("3333");
 		cadastroDto.setGenero("F");
 		cadastroDto.setSobre("Tesh");
@@ -102,7 +102,7 @@ public class UsuarioControllerTest {
 		cadastroDto.setUserName("tkkh");
 		cadastroDto.setCpf("6875");
 		cadastroDto.setDataNascimento(LocalDate.of(1998, Month.DECEMBER, 22));
-		cadastroDto.setDataCadastro(LocalDate.of(2021, Month.JANUARY, 22));
+//		cadastroDto.setDataCadastro(LocalDate.of(2021, Month.JANUARY, 22));
 		cadastroDto.setNumeroCelular("748654");
 		cadastroDto.setGenero("F");
 		cadastroDto.setSobre("Testandooff");
@@ -128,7 +128,7 @@ public class UsuarioControllerTest {
 		cadastroDto.setUserName("guilhermedsantshj4ggb");
 		cadastroDto.setCpf("11112141");
 		cadastroDto.setDataNascimento(LocalDate.of(1998, Month.DECEMBER, 22));
-		cadastroDto.setDataCadastro(LocalDate.of(2020, Month.DECEMBER, 3));
+//		cadastroDto.setDataCadastro(LocalDate.of(2020, Month.DECEMBER, 3));
 		cadastroDto.setNumeroCelular("55554774555");
 		cadastroDto.setGenero("F");
 		cadastroDto.setSobre("Tesfft");
@@ -153,7 +153,7 @@ public class UsuarioControllerTest {
 		cadastroDto.setUserName("guidooofdf");
 		cadastroDto.setCpf("78421155845");
 		cadastroDto.setDataNascimento(LocalDate.of(1998, Month.DECEMBER, 22));
-		cadastroDto.setDataCadastro(LocalDate.of(2021, Month.DECEMBER, 6));
+//		cadastroDto.setDataCadastro(LocalDate.of(2021, Month.DECEMBER, 6));
 		cadastroDto.setNumeroCelular("11874417774");
 		cadastroDto.setGenero("M");
 		cadastroDto.setSobre("Tesdk");
@@ -245,11 +245,7 @@ public class UsuarioControllerTest {
 				.content(objectMapper.writeValueAsString(user)))
 		        .andExpect(status().isBadRequest());
 		
-		
-		
 	}*/
-	
-	
 	
 	/*@Test
 	public void TestCadastraNomeVazio() throws JsonProcessingException, Exception{
@@ -272,19 +268,5 @@ public class UsuarioControllerTest {
 		.andExpect(status().isBadRequest());
 		
 	}*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
