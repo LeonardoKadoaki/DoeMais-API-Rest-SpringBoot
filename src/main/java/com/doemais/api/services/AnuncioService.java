@@ -15,12 +15,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.doemais.api.dto.AnuncioFotosType;
 import com.doemais.api.dto.AvaliacaoDto;
 import com.doemais.api.dto.StatusAnuncioDto;
 import com.doemais.api.enums.StatusAnuncioEnum;
 import com.doemais.api.exception.EntidadeNaoEncontradaException;
 import com.doemais.api.models.Anuncio;
-import com.doemais.api.models.AvaliacaoType;
+import com.doemais.api.models.AnuncioFotos;
 import com.doemais.api.models.StatusAnuncio;
 import com.doemais.api.repository.AnuncioRepository;
 import com.doemais.api.repository.CategoriaRepository;
@@ -130,7 +131,7 @@ public class AnuncioService {
 		statusAnuncioRepository.findByIdStatus(anuncio.getStatus().getIdStatus()).orElseThrow(
 				() -> new EntidadeNaoEncontradaException(String.format("Status com id %d inválido ou não encontrado", anuncio.getStatus().getIdStatus())));
 		
-		usuarioRepository.findById(anuncio.getUsuarioAnunciante().getIdUsuario()).orElseThrow(
+		usuarioRepository.findByIdUsuario(anuncio.getUsuarioAnunciante().getIdUsuario()).orElseThrow(
 				() -> new EntidadeNaoEncontradaException(String.format("Usuário com id %d inválido ou não encontrado", anuncio.getUsuarioAnunciante().getIdUsuario())));
 		
 	}
@@ -166,5 +167,19 @@ public class AnuncioService {
 		anuncio.setStatus(status);
 		
 		return this.salvarAnuncio(anuncio);
+	}
+	
+	public Anuncio cadastrarFotosAnuncio(AnuncioFotosType fotos) throws EntidadeNaoEncontradaException {
+		Anuncio anuncio = anuncioRepository.findByIdAnuncio(fotos.getIdAnuncio()).orElseThrow(
+				() -> new EntidadeNaoEncontradaException(String.format("Anúncio com id %d não encontrado", fotos.getIdAnuncio())));
+//		for (AnuncioFotos foto : fotos.getFotos()) {
+//			logger.info(foto.getFoto());
+//		}
+		anuncio.setFotos(fotos.getFotos());
+		for (AnuncioFotos foto : anuncio.getFotos()) {
+			logger.info(foto.getFoto());
+		}
+		return anuncioRepository.save(anuncio);
+		
 	}
 }

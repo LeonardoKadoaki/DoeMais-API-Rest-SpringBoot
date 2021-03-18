@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.doemais.api.dto.AvaliacaoType;
 import com.doemais.api.dto.CadastroDto;
 import com.doemais.api.dto.ReputacaoDto;
 import com.doemais.api.exception.ConflictException;
@@ -95,8 +96,11 @@ public class UsuarioController {
 
 	@ApiOperation(value = "Retorna avaliação de um usuário")
 	@GetMapping("/perfil/{idUsuario}/avaliacao")
-	public double consultarAvaliacaoUsuario(@PathVariable(value = "idUsuario") long idUsuario) throws EntidadeNaoEncontradaException {
-		return usuarioService.getAvaliacaoUsuario(idUsuario);
+	public AvaliacaoType consultarAvaliacaoUsuario(@PathVariable(value = "idUsuario") long idUsuario) throws EntidadeNaoEncontradaException {
+		double a = usuarioService.getAvaliacaoUsuario(idUsuario);
+		AvaliacaoType ava = new AvaliacaoType();
+		ava.setAvaliacao(a);
+		return ava;
 	}
 
 	@ApiOperation(value="Avalia um usuário")

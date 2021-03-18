@@ -1,4 +1,4 @@
-package com.doemais.api.models;
+package com.doemais.api.dto;
 
 public class AvaliacaoType {
 

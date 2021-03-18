@@ -22,12 +22,12 @@ public class AnuncioFotos implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idAnuncioFotos;
 	
-	@Column(nullable = true, length = 100)
+	@Column(nullable = true, length = 200)
 	private String foto;
 	
-	@ManyToOne
-	@JoinColumn(name = "idAnuncio", nullable = false)
-	private  Anuncio anuncio;
+//	@ManyToOne
+//	@JoinColumn(name = "idAnuncio", nullable = false)
+//	private  Anuncio anuncio;
 
 
 	public long getIdAnuncioFotos() {
@@ -46,18 +46,18 @@ public class AnuncioFotos implements Serializable{
 		this.foto = foto;
 	}
 
-	public Anuncio getAnuncio() {
-		return anuncio;
-	}
-
-	public void setAnuncio(Anuncio anuncio) {
-		this.anuncio = anuncio;
-	}
-
-	@Override
-	public String toString() {
-		return "AnuncioFotos [foto=" + foto + ", anuncio=" + anuncio + "]";
-	}
+//	public Anuncio getAnuncio() {
+//		return anuncio;
+//	}
+//
+//	public void setAnuncio(Anuncio anuncio) {
+//		this.anuncio = anuncio;
+//	}
+//
+//	@Override
+//	public String toString() {
+//		return "AnuncioFotos [foto=" + foto + ", anuncio=" + anuncio + "]";
+//	}
 	
 
 }

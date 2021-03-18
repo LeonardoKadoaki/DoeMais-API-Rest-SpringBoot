@@ -20,12 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.doemais.api.dto.AnuncioFotosType;
 import com.doemais.api.dto.AvaliacaoDto;
+import com.doemais.api.dto.AvaliacaoType;
 import com.doemais.api.dto.StatusAnuncioDto;
 import com.doemais.api.exception.EntidadeNaoEncontradaException;
 import com.doemais.api.models.Anuncio;
 import com.doemais.api.models.AnuncioFotos;
-import com.doemais.api.models.AvaliacaoType;
 import com.doemais.api.models.StatusAnuncio;
 import com.doemais.api.repository.AnuncioFotosRepository;
 import com.doemais.api.repository.AnuncioRepository;
@@ -149,10 +150,20 @@ public class AnuncioController {
 		return anuncioService.alterarStatusAnuncio(statusAnuncioDto);
 	}
 	
-	@ApiOperation(value = "Adiciona fotos")
-	@PostMapping("/foto")
-	public AnuncioFotos adicionarFotosAnuncio(@RequestBody @Valid AnuncioFotos anuncioFotos) throws EntidadeNaoEncontradaException {
-		return anuncioFotosRepository.save(anuncioFotos);
+//	@ApiOperation(value = "Adiciona fotos do anúncio")
+//	@PostMapping("/fotos")
+//	public AnuncioFotos adicionarFotosAnuncio(@RequestBody @Valid AnuncioFotos anuncioFotos) throws EntidadeNaoEncontradaException {
+//		return anuncioFotosRepository.save(anuncioFotos);
+//	}
+	
+	@ApiOperation(value = "Adiciona fotos do anúncio")
+	@PostMapping("/fotos")
+	public Anuncio adicionarFotosAnuncio(@RequestBody @Valid AnuncioFotosType anuncioFotos) throws EntidadeNaoEncontradaException {
+//		for (AnuncioFotos foto : anuncioFotos.getFotos()) {
+//			logger.info(foto.getFoto());
+//		}
+
+		return anuncioService.cadastrarFotosAnuncio(anuncioFotos);
 	}
 	
 }
