@@ -5,6 +5,9 @@ import javax.validation.constraints.NotNull;
 public class EnderecoDto {
 
 	@NotNull
+	private long idUsuario;
+	
+	@NotNull
 	private long idEndereco;
 
 	@NotNull
@@ -23,9 +26,6 @@ public class EnderecoDto {
 	private String bairro;
 
 	@NotNull
-	private String cidade;
-
-	@NotNull
 	private String uf;
 	
 	@NotNull
@@ -35,21 +35,27 @@ public class EnderecoDto {
 		super();
 	}
 
-	public EnderecoDto(@NotNull long idEndereco, @NotNull String logradouro, @NotNull int numero, @NotNull String cep,
-			@NotNull String complemento, @NotNull String localidade, @NotNull String bairro, @NotNull String cidade, @NotNull String uf) {
+	public EnderecoDto(@NotNull long idUsuario, @NotNull long idEndereco, @NotNull String logradouro, @NotNull int numero, @NotNull String cep,
+			@NotNull String complemento, @NotNull String localidade, @NotNull String bairro, @NotNull String uf) {
 		super();
+		this.idUsuario = idUsuario;
 		this.idEndereco = idEndereco;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.cep = cep;
 		this.complemento = complemento;
 		this.bairro = bairro;
-		this.cidade = cidade;
 		this.uf = uf;
 		this.localidade = localidade;
 	}
 
+	public long getIdUsuario() {
+		return idUsuario;
+	}
 
+	public void setIdUsuario(long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
 
 	public long getIdEndereco() {
 		return idEndereco;
@@ -97,14 +103,6 @@ public class EnderecoDto {
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
 	}
 
 	public String getUf() {
