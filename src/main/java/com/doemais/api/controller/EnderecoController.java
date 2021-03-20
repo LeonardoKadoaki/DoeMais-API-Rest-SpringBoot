@@ -58,7 +58,7 @@ public class EnderecoController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping(produces = "application/json")
 	public void cadastrarEnderecoUsuario(@RequestBody @Valid Endereco endereco) throws Exception {
-		enderecoRepository.save(endereco);
+		enderecoService.cadastrarEndereco(endereco);
 	}
 	
 	@ApiOperation(value = "Retorna o endereço do usuário pelo cep")

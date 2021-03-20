@@ -35,7 +35,7 @@ public class EnderecoServiceTest {
 	
 	endereco.setBairro("Teste");
 	endereco.setCep("00000000");
-	endereco.setCidade("Teste");
+	endereco.setLocalidade("Teste");
 	endereco.setComplemento("Teste");
 	endereco.setIdEndereco(1);
 	endereco.setLogradouro("Teste");

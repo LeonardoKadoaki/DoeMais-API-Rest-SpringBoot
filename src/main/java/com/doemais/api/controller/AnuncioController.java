@@ -24,6 +24,7 @@ import com.doemais.api.dto.AnuncioFotosType;
 import com.doemais.api.dto.AvaliacaoDto;
 import com.doemais.api.dto.AvaliacaoType;
 import com.doemais.api.dto.StatusAnuncioDto;
+import com.doemais.api.exception.ConflictException;
 import com.doemais.api.exception.EntidadeNaoEncontradaException;
 import com.doemais.api.models.Anuncio;
 import com.doemais.api.models.AnuncioFotos;
@@ -87,7 +88,7 @@ public class AnuncioController {
 
 	@ApiOperation(value = "Cadastra um anúncio")
 	@PostMapping
-	public Anuncio cadastrarAnuncio(@RequestBody @Valid Anuncio anuncio) throws EntidadeNaoEncontradaException {
+	public Anuncio cadastrarAnuncio(@RequestBody @Valid Anuncio anuncio) throws EntidadeNaoEncontradaException, ConflictException {
 		return anuncioService.cadastrarAnuncio(anuncio);
 	}
 

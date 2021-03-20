@@ -22,11 +22,11 @@ public class EnderecoDtoTest {
 	
 		endereco.setCep("1111111");
 		endereco.setBairro("Teste");
-		endereco.setCidade("Teste");
+		endereco.setLocalidade("Teste");
 		
 		assertEquals("1111111", endereco.getCep());
 		assertEquals("Teste", endereco.getBairro());
-		assertEquals("Teste", endereco.getCidade());
+		assertEquals("Teste", endereco.getLocalidade());
 				
 	}
 	

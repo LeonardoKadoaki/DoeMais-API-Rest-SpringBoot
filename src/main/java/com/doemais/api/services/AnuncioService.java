@@ -19,37 +19,47 @@ import com.doemais.api.dto.AnuncioFotosType;
 import com.doemais.api.dto.AvaliacaoDto;
 import com.doemais.api.dto.StatusAnuncioDto;
 import com.doemais.api.enums.StatusAnuncioEnum;
+import com.doemais.api.exception.ConflictException;
 import com.doemais.api.exception.EntidadeNaoEncontradaException;
 import com.doemais.api.models.Anuncio;
 import com.doemais.api.models.AnuncioFotos;
 import com.doemais.api.models.StatusAnuncio;
 import com.doemais.api.repository.AnuncioRepository;
 import com.doemais.api.repository.CategoriaRepository;
+import com.doemais.api.repository.EnderecoRepository;
 import com.doemais.api.repository.StatusAnuncioRepository;
 import com.doemais.api.repository.UsuarioRepository;
 
 @Service
 public class AnuncioService {
 
-	Logger logger = LoggerFactory.getLogger(UsuarioService.class);
+	Logger logger = LoggerFactory.getLogger(AnuncioService.class);
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Autowired
 	AnuncioRepository anuncioRepository;
-	
+
 	@Autowired
 	CategoriaRepository categoriaRepository;
-	
+
 	@Autowired
 	StatusAnuncioRepository statusAnuncioRepository;
-	
+
 	@Autowired
 	UsuarioRepository usuarioRepository;
-	
 
-	public Anuncio cadastrarAnuncio(Anuncio anuncio) throws EntidadeNaoEncontradaException {
+	@Autowired
+	EnderecoRepository enderecoRepository;
+
+	public Anuncio cadastrarAnuncio(Anuncio anuncio) throws EntidadeNaoEncontradaException, ConflictException {
+
+		enderecoRepository.findByUsuarioIdUsuario(anuncio.getUsuarioAnunciante().getIdUsuario())
+				.orElseThrow(() -> new ConflictException(
+						String.format("O usuário id %d precisa cadastrar um endereço antes de criar um anúncio",
+								anuncio.getUsuarioAnunciante().getIdUsuario())));
+
 		anuncio.setDataCriacao(LocalDateTime.now());
 		anuncio.setDataExpiracao(LocalDateTime.now().plusDays(60));
 		StatusAnuncio status = new StatusAnuncio();
@@ -57,7 +67,7 @@ public class AnuncioService {
 		anuncio.setStatus(status);
 		return this.salvarAnuncio(anuncio);
 	}
-	
+
 	public Anuncio salvarAnuncio(Anuncio anuncio) throws EntidadeNaoEncontradaException {
 		verificaInformacoesValidasDoAnuncio(anuncio);
 		anuncioRepository.save(anuncio);
@@ -90,8 +100,8 @@ public class AnuncioService {
 
 	public List<Anuncio> buscarAnunciosPaginacao(final int pagina, final int limite) {
 		final List<Anuncio> anuncios = new ArrayList<Anuncio>();
-		List<Anuncio> retorno = anuncioRepository
-				.buscarAnuncioComPaginacao(StatusAnuncioEnum.EM_ANDAMENTO.getValor(), PageRequest.of(pagina, limite, Sort.Direction.DESC, "dataCriacao"));
+		List<Anuncio> retorno = anuncioRepository.buscarAnuncioComPaginacao(StatusAnuncioEnum.EM_ANDAMENTO.getValor(),
+				PageRequest.of(pagina, limite, Sort.Direction.DESC, "dataCriacao"));
 		retorno.forEach(anuncio -> {
 			anuncios.add(anuncio);
 		});
@@ -102,76 +112,84 @@ public class AnuncioService {
 		buscarAnuncioPorId(anuncio.getIdAnuncio());
 		anuncioRepository.delete(anuncio);
 	}
-	
-	protected void verificaInformacoesValidasDoAnuncio(Anuncio anuncio) throws EntidadeNaoEncontradaException{
-		
-		if(anuncio.getTitulo().trim().isEmpty() || anuncio.getTitulo() == null) {
+
+	protected void verificaInformacoesValidasDoAnuncio(Anuncio anuncio) throws EntidadeNaoEncontradaException {
+
+		if (anuncio.getTitulo().trim().isEmpty() || anuncio.getTitulo() == null) {
 			throw new NullPointerException("O campo titulo não pode ser nulo ou vazio");
 		}
-		
-		if(anuncio.getDescricao().trim().isEmpty() || anuncio.getTitulo() == null) {
+
+		if (anuncio.getDescricao().trim().isEmpty() || anuncio.getTitulo() == null) {
 			throw new NullPointerException("O campo descricao não pode ser nulo ou vazio");
 		}
-		
-		if(anuncio.getCategoria().equals(null) || anuncio.getCategoria().getIdCategoria() == 0) {
+
+		if (anuncio.getCategoria().equals(null) || anuncio.getCategoria().getIdCategoria() == 0) {
 			throw new NullPointerException("A categoria não pode ser nulo ou vazio");
 		}
-		
-		if(anuncio.getStatus().equals(null) || anuncio.getStatus().getIdStatus() == 0 ) {
+
+		if (anuncio.getStatus().equals(null) || anuncio.getStatus().getIdStatus() == 0) {
 			throw new NullPointerException("O status não pode ser nulo ou vazio");
 		}
-		
-		if(anuncio.getUsuarioAnunciante().equals(null) || anuncio.getUsuarioAnunciante().getIdUsuario() == 0 ) {
+
+		if (anuncio.getUsuarioAnunciante().equals(null) || anuncio.getUsuarioAnunciante().getIdUsuario() == 0) {
 			throw new NullPointerException("O usuário não pode ser nulo ou vazio");
 		}
-		
+
 		categoriaRepository.findByIdCategoria(anuncio.getCategoria().getIdCategoria()).orElseThrow(
-				() -> new EntidadeNaoEncontradaException(String.format("Categoria id %d inválida ou não encontrada", anuncio.getCategoria().getIdCategoria())));
-		
-		statusAnuncioRepository.findByIdStatus(anuncio.getStatus().getIdStatus()).orElseThrow(
-				() -> new EntidadeNaoEncontradaException(String.format("Status com id %d inválido ou não encontrado", anuncio.getStatus().getIdStatus())));
-		
+				() -> new EntidadeNaoEncontradaException(String.format("Categoria id %d inválida ou não encontrada",
+						anuncio.getCategoria().getIdCategoria())));
+
+		statusAnuncioRepository.findByIdStatus(anuncio.getStatus().getIdStatus())
+				.orElseThrow(() -> new EntidadeNaoEncontradaException(String
+						.format("Status com id %d inválido ou não encontrado", anuncio.getStatus().getIdStatus())));
+
 		usuarioRepository.findByIdUsuario(anuncio.getUsuarioAnunciante().getIdUsuario()).orElseThrow(
-				() -> new EntidadeNaoEncontradaException(String.format("Usuário com id %d inválido ou não encontrado", anuncio.getUsuarioAnunciante().getIdUsuario())));
-		
+				() -> new EntidadeNaoEncontradaException(String.format("Usuário com id %d inválido ou não encontrado",
+						anuncio.getUsuarioAnunciante().getIdUsuario())));
+
 	}
-	
-	public List<Anuncio> listaAnunciosPorTituloAnuncio(String titulo, final int pagina, final int limite) throws EntidadeNaoEncontradaException {
+
+	public List<Anuncio> listaAnunciosPorTituloAnuncio(String titulo, final int pagina, final int limite)
+			throws EntidadeNaoEncontradaException {
 		titulo = "%" + titulo + "%";
-		
+
 		final List<Anuncio> anuncios = new ArrayList<Anuncio>();
-		List<Anuncio> retorno = anuncioRepository
-				.buscarAnuncioPorTituloComPaginacao(titulo, StatusAnuncioEnum.EM_ANDAMENTO.getValor(), PageRequest.of(pagina, limite, Sort.Direction.DESC, "data_criacao"));
+		List<Anuncio> retorno = anuncioRepository.buscarAnuncioPorTituloComPaginacao(titulo,
+				StatusAnuncioEnum.EM_ANDAMENTO.getValor(),
+				PageRequest.of(pagina, limite, Sort.Direction.DESC, "data_criacao"));
 		retorno.forEach(anuncio -> {
 			anuncios.add(anuncio);
 		});
 		return anuncios;
 	}
-	
-	public List<Anuncio> listaAnunciosPorCidadeAnuncio(String cidade, final int pagina, final int limite) throws EntidadeNaoEncontradaException {
+
+	public List<Anuncio> listaAnunciosPorCidadeAnuncio(String cidade, final int pagina, final int limite)
+			throws EntidadeNaoEncontradaException {
 		final List<Anuncio> anuncios = new ArrayList<Anuncio>();
-		List<Anuncio> retorno = anuncioRepository
-				.buscarAnuncioPorCidadeComPaginacao(cidade, StatusAnuncioEnum.EM_ANDAMENTO.getValor(), PageRequest.of(pagina, limite, Sort.Direction.DESC, "data_criacao"));
+		List<Anuncio> retorno = anuncioRepository.buscarAnuncioPorCidadeComPaginacao(cidade,
+				StatusAnuncioEnum.EM_ANDAMENTO.getValor(),
+				PageRequest.of(pagina, limite, Sort.Direction.DESC, "data_criacao"));
 		retorno.forEach(anuncio -> {
 			anuncios.add(anuncio);
 		});
 		return anuncios;
 	}
-	
+
 	@Transactional
 	public Anuncio alterarStatusAnuncio(StatusAnuncioDto statusAnuncioDto) throws EntidadeNaoEncontradaException {
 		StatusAnuncio status = new StatusAnuncio();
 		status.setIdStatus(statusAnuncioDto.getStatus().getValor());
-		
+
 		Anuncio anuncio = this.buscarAnuncioPorId(statusAnuncioDto.getIdAnuncio());
 		anuncio.setStatus(status);
-		
+
 		return this.salvarAnuncio(anuncio);
 	}
-	
+
 	public Anuncio cadastrarFotosAnuncio(AnuncioFotosType fotos) throws EntidadeNaoEncontradaException {
-		Anuncio anuncio = anuncioRepository.findByIdAnuncio(fotos.getIdAnuncio()).orElseThrow(
-				() -> new EntidadeNaoEncontradaException(String.format("Anúncio com id %d não encontrado", fotos.getIdAnuncio())));
+		Anuncio anuncio = anuncioRepository.findByIdAnuncio(fotos.getIdAnuncio())
+				.orElseThrow(() -> new EntidadeNaoEncontradaException(
+						String.format("Anúncio com id %d não encontrado", fotos.getIdAnuncio())));
 //		for (AnuncioFotos foto : fotos.getFotos()) {
 //			logger.info(foto.getFoto());
 //		}
@@ -180,6 +198,6 @@ public class AnuncioService {
 			logger.info(foto.getFoto());
 		}
 		return anuncioRepository.save(anuncio);
-		
+
 	}
 }

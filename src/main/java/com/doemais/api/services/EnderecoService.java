@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.doemais.api.dto.EnderecoDto;
 import com.doemais.api.dto.EnderecoType;
+import com.doemais.api.exception.ConflictException;
 import com.doemais.api.exception.EntidadeNaoEncontradaException;
 import com.doemais.api.models.Endereco;
 import com.doemais.api.models.Usuario;
@@ -51,12 +53,19 @@ public class EnderecoService {
 						String.format("O usuário com id %d não possui endereço cadastrado", idUsuario)));
 	}
 
-	public Endereco cadastrarEndereco(Endereco endereco) throws EntidadeNaoEncontradaException {
+	public Endereco cadastrarEndereco(Endereco endereco) throws EntidadeNaoEncontradaException, ConflictException {
 		validarInformacoesEndereco(endereco);
 		return enderecoRepository.save(endereco);
 	}
 
-	protected void validarInformacoesEndereco(Endereco endereco) throws EntidadeNaoEncontradaException {
+	protected void validarInformacoesEndereco(Endereco endereco) throws EntidadeNaoEncontradaException, ConflictException {
+		
+		Optional<Endereco> endeaux = enderecoRepository.findByUsuarioIdUsuario(endereco.getUsuario().getIdUsuario());
+		
+		if(endeaux.isPresent()) {
+			throw new ConflictException("O usuário já possui um endereço cadastrado");
+		}
+		
 		if (endereco.getBairro().trim().isEmpty() || endereco.getBairro() == null) {
 			throw new NullPointerException("O bairro não pode ser nulo");
 		}

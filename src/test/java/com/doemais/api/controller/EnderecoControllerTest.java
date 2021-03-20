@@ -68,7 +68,7 @@ public class EnderecoControllerTest {
 		Endereco endereco = new Endereco();
 		endereco.setBairro("teste");
 		endereco.setCep("0000000");
-		endereco.setCidade("testando");
+		endereco.setLocalidade("testando");
 		endereco.setComplemento("teste");
 		endereco.setIdEndereco(1);
 		endereco.setLogradouro("teste");
@@ -104,7 +104,7 @@ public class EnderecoControllerTest {
 		Endereco endereco = new Endereco();
 		endereco.setBairro("tete");
 		endereco.setCep("09942040");
-		endereco.setCidade("testdo");
+		endereco.setLocalidade("testdo");
 		endereco.setComplemento("tste");
 		endereco.setIdEndereco(1);
 		endereco.setLogradouro("tete");
@@ -138,7 +138,7 @@ public class EnderecoControllerTest {
 		Endereco endereco = new Endereco();
 		endereco.setBairro("tete");
 		endereco.setCep("00000");
-		endereco.setCidade("testdo");
+		endereco.setLocalidade("testdo");
 		endereco.setComplemento("tste");
 		endereco.setIdEndereco(1);
 		endereco.setLogradouro("tete");
@@ -174,7 +174,7 @@ public class EnderecoControllerTest {
 		Endereco endereco = new Endereco();
 		endereco.setBairro("tete");
 		endereco.setCep("00000");
-		endereco.setCidade("testdo");
+		endereco.setLocalidade("testdo");
 		endereco.setComplemento("tste");
 		endereco.setIdEndereco(1);
 		endereco.setLogradouro("tete");
@@ -184,7 +184,7 @@ public class EnderecoControllerTest {
 		
 		//enderecoRepository.save(endereco);
 		
-		endereco.setCidade("São paulo");
+		endereco.setLocalidade("São paulo");
 		endereco.setNumero(1000);
 		
 		mockMvc.perform(put("/api/endereco/atualizar")
