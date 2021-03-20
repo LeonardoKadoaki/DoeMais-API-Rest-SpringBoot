@@ -34,6 +34,7 @@ import com.doemais.api.repository.CategoriaRepository;
 import com.doemais.api.repository.StatusAnuncioRepository;
 import com.doemais.api.services.UsuarioService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
 
 
@@ -66,12 +67,9 @@ public class AnuncioControllerTest {
 	public void TestUsuarioListaAnuncioPorId() throws Exception {
 		   
 		Usuario user = new Usuario();
-		
 		mockMvc.perform(get("/api/anuncio/usuario/"  + user.getIdUsuario())
 			    .contentType("application/json"))
 		        .andExpect(status().isOk());
-	
-		
 	}
 	
 	
@@ -124,11 +122,10 @@ public class AnuncioControllerTest {
 		anuncio.setNotaAvaliacao(2);
 		anuncio.setCategoria(categoria);
 		anuncio.setUsuarioAnunciante(usuario);
-		DateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
-		Date data3 = formato2.parse("30/05/2021");
+//		DateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
 		anuncio.setDataCriacao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
 		anuncio.setDataExpiracao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
-		anuncio.setDataFim(data3);
+		anuncio.setDataFim(LocalDateTime.now().plusDays(60));
 		
 		
 		
@@ -151,11 +148,11 @@ public class AnuncioControllerTest {
 		anuncio.setTitulo("TEE");
 		anuncio.setDescricao("TEDO");
 		anuncio.setCategoria(categoria);
-		DateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
-		Date data3 = formato2.parse("30/05/2021");
+//		DateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
+//		Date data3 = formato2.parse("30/05/2021");
 		anuncio.setDataCriacao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
 		anuncio.setDataExpiracao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
-		anuncio.setDataFim(data3);
+		anuncio.setDataFim(LocalDateTime.now().plusDays(60));
 		//anuncio.setNotaAvaliacao(1);
 		anuncio.setStatus(statusAnuncio);
 		anuncio.setUsuarioAnunciante(usuario);
@@ -191,11 +188,11 @@ public class AnuncioControllerTest {
 		anuncio.setTitulo("TEE");
 		anuncio.setDescricao("TEDO");
 		anuncio.setCategoria(categoria);
-		DateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
-		Date data3 = formato2.parse("30/05/2021");
+//		DateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
+//		Date data3 = formato2.parse("30/05/2021");
 		anuncio.setDataCriacao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
 		anuncio.setDataExpiracao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
-		anuncio.setDataFim(data3);
+		anuncio.setDataFim(LocalDateTime.now().plusDays(60));
 		//anuncio.setNotaAvaliacao(0);
 		anuncio.setStatus(statusAnuncio);
 		anuncio.setUsuarioAnunciante(usuario);

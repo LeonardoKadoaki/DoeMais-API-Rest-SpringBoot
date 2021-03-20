@@ -146,7 +146,7 @@ public class UsuarioService {
 	}
 
 	public Usuario atualizarUsuario(Usuario usuario) throws ConflictException {
-		verificaInformacoesValidas(formataCadastroDto(usuario));
+//		verificaInformacoesValidas(formataCadastroDto(usuario));
 		return usuarioRepository.save(usuario);
 	}
 
