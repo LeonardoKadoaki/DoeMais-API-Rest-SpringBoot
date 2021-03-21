@@ -37,7 +37,7 @@ public class EnderecoService {
 
 		EnderecoDto enderecoFormatado = new EnderecoDto(endereco.getUsuario().getIdUsuario(), endereco.getIdEndereco(),
 				endereco.getLogradouro(), endereco.getNumero(), endereco.getCep(), endereco.getComplemento(),
-				endereco.getBairro(), endereco.getUf(), endereco.getLocalidade());
+			 endereco.getLocalidade(), endereco.getBairro(), endereco.getUf());
 
 		return enderecoFormatado;
 	}
