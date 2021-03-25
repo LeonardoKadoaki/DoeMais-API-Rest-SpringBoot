@@ -92,7 +92,7 @@ public class AnuncioService {
 		return a.getNotaAvaliacao();
 	}
 
-	public Anuncio registraAvaliacaoAnuncio(AvaliacaoDto av) throws EntidadeNaoEncontradaException {
+	public Anuncio registraAvaliacaoAnuncio(AvaliacaoDto av) throws EntidadeNaoEncontradaException, ConflictException {
 		Anuncio a = buscarAnuncioPorId(av.getIdAnuncio());
 		a.setNotaAvaliacao(av.getNotaAvaliacao());
 		return anuncioRepository.save(a);

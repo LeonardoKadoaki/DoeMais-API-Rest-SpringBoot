@@ -141,7 +141,7 @@ public class AnuncioController {
 
 	@ApiOperation(value = "Avalia o anúncio")
 	@PostMapping("/avaliar")
-	public Anuncio avaliarAnuncio(@RequestBody @Valid AvaliacaoDto av) throws EntidadeNaoEncontradaException {
+	public Anuncio avaliarAnuncio(@RequestBody @Valid AvaliacaoDto av) throws EntidadeNaoEncontradaException, ConflictException {
 		return anuncioService.registraAvaliacaoAnuncio(av);
 	}
 	

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.doemais.api.enums.StatusAnuncioEnum;
+import com.doemais.api.exception.ConflictException;
 
 @Entity
 @Table(name = "ANUNCIO", indexes = @Index(columnList = "titulo"))
@@ -115,12 +116,12 @@ public class Anuncio {
 		return notaAvaliacao;
 	}
 
-	public void setNotaAvaliacao(double notaAvaliacao) {
+	public void setNotaAvaliacao(double notaAvaliacao) throws ConflictException {
 		if (getNotaAvaliacao() != 0)
-			throw new RuntimeException("Anúncio já avaliado");
+			throw new ConflictException("Anúncio já avaliado");
 
 		if (getStatus().getIdStatus() != StatusAnuncioEnum.CONCLUIDO.getValor())
-			throw new RuntimeException("Anúncio não concluído");
+			throw new ConflictException("Anúncio não concluído");
 
 		this.notaAvaliacao = notaAvaliacao;
 	}
