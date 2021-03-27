@@ -3,6 +3,7 @@ package com.doemais.api.repository;
 import java.util.List;
 import java.util.Optional;
 
+import com.doemais.api.dto.DoadorDonatarioType;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -35,4 +36,7 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Long> {
 	
 	@Query(value = "update anuncio set id_status = ? where id_anuncio = ?", nativeQuery = true)
 	void atualizarStatusAnuncio(int idStatus, long idAnuncio);
+
+//	@Query(value = "select * from anuncio where id_anuncio = ?", nativeQuery = true)
+//	Anuncio getDoadorDonatarioByIdAnuncio(long idAnuncio);
 }

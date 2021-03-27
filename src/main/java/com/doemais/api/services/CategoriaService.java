@@ -39,8 +39,8 @@ public class CategoriaService {
 		}
 	}
 	
-	public void deletarCategoria(Categoria categoria) throws EntidadeNaoEncontradaException{
-		buscarCategoriaPorId(categoria.getIdCategoria());
+	public void deletarCategoria(long idCategoria) throws EntidadeNaoEncontradaException{
+		Categoria categoria = buscarCategoriaPorId(idCategoria);
 		categoriaRepository.delete(categoria);
 	}
 	

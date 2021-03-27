@@ -1,4 +1,4 @@
- package com.doemais.api.models;
+package com.doemais.api.models;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -52,6 +52,9 @@ public class Anuncio {
 	@Column
 	private double notaAvaliacao;
 
+	@Column
+	private long idAvaliador;
+
 	@ManyToOne
 	@JoinColumn(name = "idStatus", nullable = false)
 	private StatusAnuncio status;
@@ -59,6 +62,9 @@ public class Anuncio {
 	@ManyToOne
 	@JoinColumn(name = "idUsuario", nullable = false)
 	private Usuario usuarioAnunciante;
+
+	@Column
+	private long idDonatario;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "idAnuncio", nullable = false)
@@ -117,13 +123,15 @@ public class Anuncio {
 	}
 
 	public void setNotaAvaliacao(double notaAvaliacao) throws ConflictException {
-		if (getNotaAvaliacao() != 0)
-			throw new ConflictException("Anúncio já avaliado");
-
-		if (getStatus().getIdStatus() != StatusAnuncioEnum.CONCLUIDO.getValor())
-			throw new ConflictException("Anúncio não concluído");
-
 		this.notaAvaliacao = notaAvaliacao;
+	}
+
+	public long getIdAvaliador() {
+		return idAvaliador;
+	}
+
+	public void setIdAvaliador(long idAvaliador) {
+		this.idAvaliador = idAvaliador;
 	}
 
 	public Categoria getCategoria() {
@@ -150,6 +158,14 @@ public class Anuncio {
 		this.usuarioAnunciante = usuarioAnunciante;
 	}
 
+	public long getIdDonatario() {
+		return idDonatario;
+	}
+
+	public void setIdDonatario(long idDonatario) {
+		this.idDonatario = idDonatario;
+	}
+
 	public StatusAnuncio getStatus() {
 		return status;
 	}
@@ -162,7 +178,7 @@ public class Anuncio {
 	public String toString() {
 		return "Anuncio [idAnuncio=" + idAnuncio + ", titulo=" + titulo + ", descricao=" + descricao + ", categoria="
 				+ categoria + ", dataCriacao=" + dataCriacao + ", dataExpiracao=" + dataExpiracao + ", dataFim="
-				+ dataFim + ", status=" + status + ", usuarioAnunciante=" + usuarioAnunciante + "]";
+				+ dataFim + ", status=" + status + ", usuarioAnunciante=" + usuarioAnunciante + ", donatario=" + idDonatario + "]";
 	}
 
 	@Override

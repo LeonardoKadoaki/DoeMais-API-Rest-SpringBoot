@@ -59,13 +59,13 @@ public class CategoriaController {
 	}
 	
 	@ApiOperation(value="Deleta uma categoria")
-	@DeleteMapping
-	public void deletarCategoria(@RequestBody @Valid Categoria categoria) throws EntidadeNaoEncontradaException {
-		categoriaService.deletarCategoria(categoria);
+	@DeleteMapping("/{idCategoria}")
+	public void deletarCategoria(@PathVariable(value="idCategoria") long idCategoria) throws EntidadeNaoEncontradaException {
+		categoriaService.deletarCategoria(idCategoria);
 	}
 	
 	@ApiOperation(value="Atualiza uma categoria")
-	@PutMapping
+	@PutMapping("/{idCategoria}")
 	public Categoria atualizarCategoria(@RequestBody @Valid Categoria categoria) {
 		return categoriaService.cadastrarCategoria(categoria);
 	}

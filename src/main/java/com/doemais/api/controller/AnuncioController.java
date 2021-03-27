@@ -23,11 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.doemais.api.dto.AnuncioFotosType;
 import com.doemais.api.dto.AvaliacaoDto;
 import com.doemais.api.dto.AvaliacaoType;
+import com.doemais.api.dto.DoadorDonatarioType;
+import com.doemais.api.dto.InteressadosAnuncioType;
+import com.doemais.api.dto.InteresseType;
 import com.doemais.api.dto.StatusAnuncioDto;
 import com.doemais.api.exception.ConflictException;
 import com.doemais.api.exception.EntidadeNaoEncontradaException;
 import com.doemais.api.models.Anuncio;
-import com.doemais.api.models.AnuncioFotos;
 import com.doemais.api.models.StatusAnuncio;
 import com.doemais.api.repository.AnuncioFotosRepository;
 import com.doemais.api.repository.AnuncioRepository;
@@ -93,13 +95,13 @@ public class AnuncioController {
 	}
 
 	@ApiOperation(value = "Deleta um anúncio")
-	@DeleteMapping
-	public void deletarAnuncio(@RequestBody @Valid Anuncio anuncio) throws EntidadeNaoEncontradaException {
-		anuncioService.deletarAnuncio(anuncio);
+	@DeleteMapping("/{idAnuncio}")
+	public void deletarAnuncio(@PathVariable(value = "idAnuncio") long idAnuncio) throws EntidadeNaoEncontradaException {
+		anuncioService.deletarAnuncio(idAnuncio);
 	}
 
 	@ApiOperation(value = "Atualiza um anúncio")
-	@PutMapping
+	@PutMapping("/{idAnuncio}")//NAO CONCORDO COM ESSA MERDA, VOU TIRAR NO PRODUTO FINAL
 	public Anuncio atualizarAnuncio(@RequestBody @Valid Anuncio anuncio) throws EntidadeNaoEncontradaException {
 		return anuncioService.salvarAnuncio(anuncio);
 	}
@@ -147,24 +149,31 @@ public class AnuncioController {
 	
 	@ApiOperation(value = "Altera o status do anúncio")
 	@PostMapping("/alterar-status")
-	public Anuncio alterarStatusAnuncio(@RequestBody @Valid StatusAnuncioDto statusAnuncioDto) throws EntidadeNaoEncontradaException {
+	public Anuncio alterarStatusAnuncio(@RequestBody @Valid StatusAnuncioDto statusAnuncioDto) throws EntidadeNaoEncontradaException, ConflictException {
 		return anuncioService.alterarStatusAnuncio(statusAnuncioDto);
 	}
-	
-//	@ApiOperation(value = "Adiciona fotos do anúncio")
-//	@PostMapping("/fotos")
-//	public AnuncioFotos adicionarFotosAnuncio(@RequestBody @Valid AnuncioFotos anuncioFotos) throws EntidadeNaoEncontradaException {
-//		return anuncioFotosRepository.save(anuncioFotos);
-//	}
 	
 	@ApiOperation(value = "Adiciona fotos do anúncio")
 	@PostMapping("/fotos")
 	public Anuncio adicionarFotosAnuncio(@RequestBody @Valid AnuncioFotosType anuncioFotos) throws EntidadeNaoEncontradaException {
-//		for (AnuncioFotos foto : anuncioFotos.getFotos()) {
-//			logger.info(foto.getFoto());
-//		}
-
 		return anuncioService.cadastrarFotosAnuncio(anuncioFotos);
 	}
+
+	@ApiOperation(value = "Obtém o doador e o donatário do anúncio")
+	@GetMapping("/{idAnuncio}/doador-donatario")
+	public DoadorDonatarioType doadorDonatario(@PathVariable(value = "idAnuncio") long idAnuncio) throws EntidadeNaoEncontradaException {
+		return anuncioService.doadorDonatario(idAnuncio);
+	}
+
+	@ApiOperation(value = "Registra interesse do usuário no anúncio")
+	@PostMapping("/interesse")
+	public void registrarInteresseAnuncio(@RequestBody @Valid InteresseType interesse) throws EntidadeNaoEncontradaException, ConflictException {
+		anuncioService.registrarInteresseAnuncio(interesse);
+	}
 	
+	@ApiOperation(value = "Consulta os interessados no anúncio")
+	@GetMapping("/interessados/{idAnuncio}")
+	public List<InteressadosAnuncioType>  consultarInteressadosAnuncio(@PathVariable(value = "idAnuncio") long idAnuncio) throws EntidadeNaoEncontradaException {
+		return anuncioService.consultarInteressadosAnuncio(idAnuncio);
+	}
 }

@@ -138,10 +138,10 @@ public class UsuarioService {
 				() -> new EntidadeNaoEncontradaException(String.format("Usuário com id %d não encontrado", idUsuario)));
 	}
 
-	public void deletarUsuario(Usuario usuario) throws EntidadeNaoEncontradaException {
-		usuarioRepository.findByIdUsuario(usuario.getIdUsuario()).orElseThrow(() -> new EntidadeNaoEncontradaException(
-				String.format("Usuário com id %d não existe ou já excluído", usuario.getIdUsuario())));
-		authRepository.deleteByUsuarioIdUsuario(usuario.getIdUsuario());
+	public void deletarUsuario(long idUsuario) throws EntidadeNaoEncontradaException {
+		Usuario usuario = usuarioRepository.findByIdUsuario(idUsuario).orElseThrow(() -> new EntidadeNaoEncontradaException(
+				String.format("Usuário com id %d não existe ou já excluído", idUsuario)));
+		authRepository.deleteByUsuarioIdUsuario(idUsuario);
 		usuarioRepository.delete(usuario);
 	}
 

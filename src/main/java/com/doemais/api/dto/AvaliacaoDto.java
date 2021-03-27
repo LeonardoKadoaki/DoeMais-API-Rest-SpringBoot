@@ -10,6 +10,9 @@ public class AvaliacaoDto {
 	@NotNull
 	private double notaAvaliacao;
 
+	@NotNull
+	private long idAvaliador;
+
 
 	public double getNotaAvaliacao() {
 		return notaAvaliacao;
@@ -30,6 +33,14 @@ public class AvaliacaoDto {
 
 	public void setIdAnuncio(long idAnuncio) {
 		this.idAnuncio = idAnuncio;
+	}
+
+	public long getIdAvaliador() {
+		return idAvaliador;
+	}
+
+	public void setIdAvaliador(long idAvaliador) {
+		this.idAvaliador = idAvaliador;
 	}
 
 	@Override

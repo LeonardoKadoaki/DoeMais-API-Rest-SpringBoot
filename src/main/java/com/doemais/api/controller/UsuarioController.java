@@ -83,13 +83,13 @@ public class UsuarioController {
 	}
 	
 	@ApiOperation(value = "Deleta um usuário")
-	@DeleteMapping
-	public void deletarUsuario(@RequestBody Usuario usuario) throws EntidadeNaoEncontradaException {
-		usuarioService.deletarUsuario(usuario);
+	@DeleteMapping("/perfil/{idUsuario}")
+	public void deletarUsuario(@PathVariable(value = "idUsuario") long idUsuario) throws EntidadeNaoEncontradaException {
+		usuarioService.deletarUsuario(idUsuario);
 	}
 
 	@ApiOperation(value = "Atualiza um usuário")
-	@PutMapping
+	@PutMapping("/perfil/{idUsuario}")
 	public Usuario atualizarUsuario(@RequestBody @Valid Usuario usuario) throws ConflictException {
 		return usuarioService.atualizarUsuario(usuario);
 	}
