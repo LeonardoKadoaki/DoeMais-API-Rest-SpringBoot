@@ -22,7 +22,7 @@ public class AnuncioFotos implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idAnuncioFotos;
 	
-	@Column(nullable = true, length = 200)
+	@Column(nullable = true, length = 600)
 	private String foto;
 	
 //	@ManyToOne

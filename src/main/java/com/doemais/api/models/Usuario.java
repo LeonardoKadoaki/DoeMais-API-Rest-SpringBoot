@@ -65,7 +65,7 @@ public class Usuario implements Serializable {
 	@Size(min = 0, max = 300, message = "O texto deve conter no máximo 300 caracteres")
 	private String sobre;
 
-	@Column(nullable = true, length = 200)
+	@Column(nullable = true, length = 600)
 	private String fotoPerfil;
 
 	public Usuario() {
