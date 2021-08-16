@@ -12,12 +12,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
-public class EnderecoDtoTest {
+ class EnderecoDtoTest {
 
 	@Test
-	public void TestSettersAndGetters() {
+	 void TestSettersAndGetters() {
 	EnderecoDto endereco = new EnderecoDto();
 	
 		endereco.setCep("1111111");
@@ -31,7 +31,7 @@ public class EnderecoDtoTest {
 	}
 	
 	@Test
-	public void TestandoEquals() {
+	void TestandoEquals() {
 		EnderecoDto endereco = new EnderecoDto();
 		EnderecoDto endereco2 = new EnderecoDto();
 		
@@ -48,7 +48,7 @@ public class EnderecoDtoTest {
 	}
 	
 	@Test
-	public void TestandoNotEquals() {
+	 void TestandoNotEquals() {
 		EnderecoDto endereco = new EnderecoDto();
 		EnderecoDto endereco2 = new EnderecoDto();
 		
@@ -66,7 +66,7 @@ public class EnderecoDtoTest {
 	}
 	
 	@Test
-	public void TestHashCode() {
+	 void TestHashCode() {
 		EnderecoDto endereco = new EnderecoDto();
 		EnderecoDto endereco2 = new EnderecoDto();
 		

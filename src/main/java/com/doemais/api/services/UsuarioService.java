@@ -8,6 +8,8 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.doemais.api.dto.AvaliacaoType;
+import com.doemais.api.enums.CategoriaDoadorEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,24 +55,17 @@ public class UsuarioService {
 	public Usuario cadastrarUsuario(CadastroDto cadastro) throws ConflictException {
 
 		verificaInformacoesValidas(cadastro);
-
 		return salvaUsuario(cadastro);
 	}
 
 	protected Usuario formataUsuario(CadastroDto cadastro) {
-
-		Usuario usuario = new Usuario(cadastro.getNome(), cadastro.getUserName(), cadastro.getCpf(),
+		return new Usuario(cadastro.getNome(), cadastro.getUserName(), cadastro.getCpf(),
 				cadastro.getDataNascimento(), LocalDate.now(), cadastro.getNumeroCelular(),
 				cadastro.getGenero(), cadastro.getSobre());
-
-		return usuario;
 	}
 
 	protected Auth formataAuth(Usuario usuario, CadastroDto cadastro) {
-
-		Auth auth = new Auth(usuario, cadastro.getEmail(), passwordEncoder.encode(cadastro.getSenha()));
-
-		return auth;
+		return new Auth(usuario, cadastro.getEmail(), passwordEncoder.encode(cadastro.getSenha()));
 	}
 
 	protected Usuario salvaUsuario(CadastroDto cadastro) {
@@ -84,9 +79,9 @@ public class UsuarioService {
 	protected void verificaInformacoesValidas(CadastroDto cadastro) throws ConflictException {
 
 		Optional<Usuario> retornoCpf = usuarioRepository.findByCpf(cadastro.getCpf());
-		Optional<Auth> retornoEmail = authRepository.findByEmail(cadastro.getEmail());
+		Optional<Auth> retornoEmail = Optional.ofNullable((authRepository.findByEmail(cadastro.getEmail())));
 		Optional<Usuario> retornoCelular = usuarioRepository.findByNumeroCelular(cadastro.getNumeroCelular());
-//		Optional<Usuario> retornoRg = usuarioRepository.findByRg(cadastro.getRg());
+	    //Optional<Usuario> retornoRg = usuarioRepository.findByRg(cadastro.getRg());
 
 		if (cadastro.getDataNascimento().isAfter(LocalDate.now())) {
 			throw new ConflictException("A data de nascimento não pode ser maior que a data de hoje");
@@ -124,18 +119,25 @@ public class UsuarioService {
 			throw new ConflictException(
 					String.format("Já existe um cadastro com o numero de celular %s", cadastro.getNumeroCelular()));
 		}
-
 	}
 
 	public List<Usuario> listaTodosUsuarios() {
-		List<Usuario> listaUsuarios = usuarioRepository.findAll();
-
-		return listaUsuarios;
+		return usuarioRepository.findAll();
 	}
 
 	public Usuario buscarUsuarioPorId(long idUsuario) throws EntidadeNaoEncontradaException {
-		return usuarioRepository.findByIdUsuario(idUsuario).orElseThrow(
+		Usuario u = usuarioRepository.findByIdUsuario(idUsuario).orElseThrow(
 				() -> new EntidadeNaoEncontradaException(String.format("Usuário com id %d não encontrado", idUsuario)));
+
+		AvaliacaoType av = null;
+		try {
+			av = this.getAvaliacaoUsuario(idUsuario);
+		} catch (EntidadeNaoEncontradaException e) {
+			logger.info(String.format("Usuário com id %d ainda não foi avaliado", idUsuario));
+		}
+
+		u.setCategoria(av == null ? CategoriaDoadorEnum.NONE.getNome() : av.getCategoria());
+		return u;
 	}
 
 	public void deletarUsuario(long idUsuario) throws EntidadeNaoEncontradaException {
@@ -163,41 +165,98 @@ public class UsuarioService {
 		return cadastro;
 	}
 
-	public double getAvaliacaoUsuario(long idUsuario) throws EntidadeNaoEncontradaException {
+	public AvaliacaoType getAvaliacaoUsuario(long idUsuario)
+			throws EntidadeNaoEncontradaException {
 
 		Optional<ResumoReputacaoUsuario> rru = resumoReputacaoRepository.findByUsuarioIdUsuario(idUsuario);
-		if (rru.isPresent())
-			return rru.get().getNotaAvaliacao();
-		else
-			throw new EntidadeNaoEncontradaException(String.format("Usuário com id %d não encontrado", idUsuario));
+		if (rru.isPresent()) {
+			int numAvaliacoes = reputacaoRepository.totalAvaliacoesByIdUsuario(idUsuario);
+
+			AvaliacaoType av = new AvaliacaoType();
+			av.setAvaliacao(rru.get().getNotaAvaliacao());
+			av.setNumeroDeAvaliacoes(numAvaliacoes);
+
+			/* Categoria e' um atributo derivado, logo, nao
+			   precisa adicionar uma coluna aa parte na tabela */
+			av.setCategoria(numAvaliacoes >= 5 ?
+					getCategoriaUsuario(rru.get().getNotaAvaliacao()) :
+					CategoriaDoadorEnum.NONE.getNome());
+
+			return av;
+		} else {
+			throw new EntidadeNaoEncontradaException(String.format("Não há avaliação para o usuário com id %d", idUsuario));
+		}
 	}
 
 	public ReputacaoUsuario registraAvaliacaoUsuario(ReputacaoDto reputacao, long idUsuario)
-			throws EntidadeNaoEncontradaException {
+			throws EntidadeNaoEncontradaException, ConflictException {
 
+		long idAvaliador = reputacao.getIdAvaliador();
 		Usuario u = buscarUsuarioPorId(idUsuario);
+		buscarUsuarioPorId(idAvaliador);
+
+		if (idAvaliador == idUsuario) {
+			throw new ConflictException("O usuário não pode se autoavaliar!");
+		}
+
+		if (reputacaoRepository.verificaAvaliacao(idUsuario, idAvaliador) > 0) {
+			throw new ConflictException(
+					String.format("O usuário id %d já foi avaliado pelo usuário id %d", idUsuario, idAvaliador));
+		}
+
 		ReputacaoUsuario ru = new ReputacaoUsuario();
 		ru.setNotaAvaliacao(reputacao.getNotaAvaliacao());
 		ru.setDataRegistro(LocalDate.now());
 		ru.setPapelUsuario(reputacao.getPapelUsuario());
 		ru.setUsuario(u);
+		ru.setIdAvaliador(idAvaliador);
+
 		ReputacaoUsuario ret = reputacaoRepository.save(ru);
-
 		Optional<ResumoReputacaoUsuario> rru = resumoReputacaoRepository.findByUsuarioIdUsuario(idUsuario);
-		if (rru.isPresent()) {
-			rru.get().setNotaAvaliacao(reputacaoRepository.mediaReputacaoByIdUsuario(u.getIdUsuario()));
-			resumoReputacaoRepository.save(rru.get());
-			return ret;
-		}
 
-		ResumoReputacaoUsuario rrun = new ResumoReputacaoUsuario();
-		rrun.setDescricaoResumo("teste");
-		rrun.setNotaAvaliacao(reputacaoRepository.mediaReputacaoByIdUsuario(u.getIdUsuario()));
-		rrun.setDataAtualizacaoRegistro(new Date());
-		rrun.setUsuario(u);
-		resumoReputacaoRepository.save(rrun);
+		if (rru.isPresent()) {
+			if (!reputacao.getDescricaoResumo().isEmpty())
+				rru.get().setDescricaoResumo(reputacao.getDescricaoResumo());
+
+			rru.get().setNotaAvaliacao(reputacaoRepository.mediaReputacaoByIdUsuario(idUsuario));
+			rru.get().setDataAtualizacaoRegistro(new Date());
+			resumoReputacaoRepository.save(rru.get());
+		} else {
+			ResumoReputacaoUsuario rrun = new ResumoReputacaoUsuario();
+			if (!reputacao.getDescricaoResumo().isEmpty())
+				rrun.setDescricaoResumo(reputacao.getDescricaoResumo());
+
+			rrun.setNotaAvaliacao(reputacaoRepository.mediaReputacaoByIdUsuario(idUsuario));
+			rrun.setDataAtualizacaoRegistro(new Date());
+			rrun.setUsuario(u);
+			resumoReputacaoRepository.save(rrun);
+		}
 
 		return ret;
 	}
 
+	private String getCategoriaUsuario(double nota) {
+
+		String categoria = CategoriaDoadorEnum.NONE.getNome();
+
+		if (nota >= CategoriaDoadorEnum.BRONZE.getMin())
+			categoria = CategoriaDoadorEnum.BRONZE.getNome();
+
+		if (nota >= CategoriaDoadorEnum.PRATA.getMin())
+			categoria = CategoriaDoadorEnum.PRATA.getNome();
+
+		if (nota >= CategoriaDoadorEnum.OURO.getMin())
+			categoria = CategoriaDoadorEnum.OURO.getNome();
+
+		if (nota >= CategoriaDoadorEnum.PLATINA.getMin())
+			categoria = CategoriaDoadorEnum.PLATINA.getNome();
+
+		if (nota >= CategoriaDoadorEnum.DIAMANTE.getMin())
+			categoria = CategoriaDoadorEnum.DIAMANTE.getNome();
+
+		if (nota > 5)
+			categoria = CategoriaDoadorEnum.NONE.getNome();
+
+		return categoria;
+	}
 }

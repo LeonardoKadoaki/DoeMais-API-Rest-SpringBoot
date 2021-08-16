@@ -1,7 +1,5 @@
 package com.doemais.api.dto;
 
-import java.time.LocalDate;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -10,32 +8,41 @@ public class ReputacaoDto {
 	@NotNull
 	private double notaAvaliacao;
 
-	private LocalDate dataRegistro;
-
 	@NotNull
 	@Size(min = 1, max = 15)
 	private String papelUsuario;
 
+	@NotNull
+	private long idAvaliador;
+
+	@Size(min = 1, max = 15)
+	private String descricaoResumo;
+
+	public ReputacaoDto(@NotNull double notaAvaliacao, @NotNull @Size(min = 1, max = 15) String papelUsuario,
+			@NotNull long idAvaliador, @Size(min = 1, max = 15) String descricaoResumo) {
+		this.notaAvaliacao = notaAvaliacao;
+		this.papelUsuario = papelUsuario;
+		this.idAvaliador = idAvaliador;
+		this.descricaoResumo = descricaoResumo;
+	}
+	
+	public ReputacaoDto() {
+		
+	}
 
 	public double getNotaAvaliacao() {
 		return notaAvaliacao;
 	}
 
 	public void setNotaAvaliacao(double notaAvaliacao)
-	throws IllegalArgumentException {
-		if (notaAvaliacao < 1 || notaAvaliacao > 5)
+			throws IllegalArgumentException {
+
+		if (notaAvaliacao < 1 || notaAvaliacao > 5) {
 			throw new IllegalArgumentException(
 					String.format("A nota da avaliacao deve ser >= 1 e <= 5, mas é %.2f", notaAvaliacao));
+		}
 
 		this.notaAvaliacao = notaAvaliacao;
-	}
-
-	public LocalDate getDataRegistro() {
-		return dataRegistro;
-	}
-
-	public void setDataRegistro(LocalDate dataRegistro) {
-		this.dataRegistro = dataRegistro;
 	}
 
 	public String getPapelUsuario() {
@@ -44,6 +51,22 @@ public class ReputacaoDto {
 
 	public void setPapelUsuario(String papelUsuario) {
 		this.papelUsuario = papelUsuario;
+	}
+
+	public long getIdAvaliador() {
+		return idAvaliador;
+	}
+
+	public void setIdAvaliador(long idAvaliador) {
+		this.idAvaliador = idAvaliador;
+	}
+
+	public String getDescricaoResumo() {
+		return descricaoResumo;
+	}
+
+	public void setDescricaoResumo(String descricaoResumo) {
+		this.descricaoResumo = descricaoResumo;
 	}
 
 	@Override
@@ -69,8 +92,4 @@ public class ReputacaoDto {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 }

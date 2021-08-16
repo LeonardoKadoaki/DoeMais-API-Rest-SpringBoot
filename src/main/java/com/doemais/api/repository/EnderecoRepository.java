@@ -16,6 +16,6 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 	
 	@Transactional
 	@Modifying
-	@Query(value="delete from endereco where id_usuario=?;", nativeQuery=true)
+	@Query(value="delete from endereco where idUsuario=?;", nativeQuery=true)
 	void deleteByUsuarioIdUsuario(long idUsuario);
 }

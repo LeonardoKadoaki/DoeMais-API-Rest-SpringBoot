@@ -7,6 +7,16 @@ public class InteressadosAnuncioType {
 	
 	private String nome;
 
+	public InteressadosAnuncioType(long idUsuarioInteressado, long idAnuncio, String nome) {
+		this.idUsuarioInteressado = idUsuarioInteressado;
+		this.idAnuncio = idAnuncio;
+		this.nome = nome;
+	}
+
+	public InteressadosAnuncioType() {
+		
+	}
+	
 	public long getIdUsuarioInteressado() {
 		return idUsuarioInteressado;
 	}

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "ENDERECO", indexes = @Index(columnList = "localidade"))
+@Table(name = "endereco", indexes = @Index(columnList = "localidade"))
 public class Endereco {
 
 	@Id
@@ -50,6 +50,23 @@ public class Endereco {
 	@Column(nullable = false, length = 30)
 	private String localidade;
 	
+	public Endereco(long idEndereco, @NotNull String logradouro, @NotNull int numero,
+			@NotNull String cep, String complemento, @NotNull String bairro, @NotNull String uf,
+			@NotNull String localidade) {
+		this.idEndereco = idEndereco;
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.cep = cep;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.uf = uf;
+		this.localidade = localidade;
+	}
+	
+	public Endereco() {
+		
+	}
+
 	public String getLocalidade() {
 		return localidade;
 	}

@@ -6,311 +6,340 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.doemais.api.dto.CadastroDto;
+import com.doemais.api.dto.AnuncioFotosType;
 import com.doemais.api.dto.AvaliacaoDto;
-
+import com.doemais.api.dto.DoadorType;
+import com.doemais.api.dto.DonatarioType;
+import com.doemais.api.dto.InteressadosAnuncioType;
+import com.doemais.api.dto.InteresseType;
+import com.doemais.api.dto.ItensRestantesType;
+import com.doemais.api.dto.MessageMoedasObjectType;
+import com.doemais.api.dto.MessageObjectType;
+import com.doemais.api.dto.StatusAnuncioDto;
+import com.doemais.api.enums.MessageEnum;
+import com.doemais.api.enums.StatusAnuncioEnum;
+import com.doemais.api.exception.ConflictException;
 import com.doemais.api.models.Anuncio;
+import com.doemais.api.models.AnuncioFotos;
 import com.doemais.api.models.Categoria;
 import com.doemais.api.models.StatusAnuncio;
 import com.doemais.api.models.Usuario;
-import com.doemais.api.repository.AnuncioRepository;
-import com.doemais.api.repository.CategoriaRepository;
-import com.doemais.api.repository.StatusAnuncioRepository;
-import com.doemais.api.services.UsuarioService;
+import com.doemais.api.services.AnuncioService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
-
-
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AnuncioControllerTest {
-	
+class AnuncioControllerTest {
+
 	@Autowired
 	private MockMvc mockMvc;
-	
+
 	@Autowired
 	private ObjectMapper objectMapper;
-	
-	@Autowired
-	private AnuncioRepository anuncioRepository;
-	
-	@Autowired
-	private StatusAnuncioRepository statusAnuncioRepository;
-	
-	@Autowired
-	private CategoriaRepository categoriaRepository;
-	
-	@Autowired
-	private UsuarioService usuarioService;
-	
-	
-	
-	@Test
-	public void TestUsuarioListaAnuncioPorId() throws Exception {
-		   
-		Usuario user = new Usuario();
-		mockMvc.perform(get("/api/anuncio/usuario/"  + user.getIdUsuario())
-			    .contentType("application/json"))
-		        .andExpect(status().isOk());
-	}
-	
-	
-	@Test
-	public void TestListaAnuncioPorId() throws Exception {
-		
-		Anuncio anuncio = new Anuncio();
 
-		mockMvc.perform(get("/api/anuncio/" + anuncio.getIdAnuncio())
-				.contentType("application/json"))
-		        .andExpect(status().isOk());
-	}
+	@MockBean
+	private AnuncioService anuncioService;
 	
+	private Categoria categoria = new Categoria();
+	private List<Categoria> categorias = new ArrayList<>();
+	private Usuario usuario = new Usuario();
+	private List<Usuario> usuarios = new ArrayList<>();
+	private Anuncio anuncio = new Anuncio();
+	private List<Anuncio> anuncios = new ArrayList<>();
+	private InteresseType interesse = new InteresseType();
+	private List<InteresseType> interesseType = new ArrayList<>();
+	private InteressadosAnuncioType interessados = new InteressadosAnuncioType();
+	private List<InteressadosAnuncioType> interesseTypeLista = new ArrayList<>();
+	private List<MessageMoedasObjectType> moedas = new ArrayList<>();
+	private AnuncioFotosType anuncioType = new AnuncioFotosType();
+	private AnuncioFotos foto = new AnuncioFotos();
+	private AvaliacaoDto avaliacao = new AvaliacaoDto();
+	private StatusAnuncioDto statusDto = new StatusAnuncioDto();
+	private DoadorType doadorType = new DoadorType();
+	private DonatarioType donatarioType = new DonatarioType();
+	private ItensRestantesType itens = new ItensRestantesType();
+    private StatusAnuncio stats = new StatusAnuncio();
+	private MessageObjectType message = new MessageObjectType();
 	
-	@Test
-	public void TestCadastrarAnuncio() throws Exception {
-		Anuncio anuncio = new Anuncio();
-		CadastroDto cadastroDto = new CadastroDto();
-		Categoria categoria = new Categoria();
-		StatusAnuncio statusAnuncio = new StatusAnuncio();
-		Usuario usuario = new Usuario();
+	@BeforeEach
+	void configuracao() throws ConflictException {
+		interesseType = new ArrayList<>();
+		categorias = new ArrayList<>();
+		usuarios = new ArrayList<>();
+		interesseTypeLista = new ArrayList<>();
+		moedas = new ArrayList<>();
 		
+		usuario = new Usuario();
+		usuario.setIdUsuario(1);
+		usuario.setCategoria(categoria.getNome());
+		usuario.setCpf("5455445");
+		usuario.setDataCadastro(LocalDate.of(2021, Month.JUNE, 28));
+		usuario.setDataNascimento(LocalDate.of(1998, Month.DECEMBER, 22));
+		usuario.setGenero("M");
+		usuario.setNome("Teste");
+		usuario.setUserName("Testesss");
+		usuario.setNumeroCelular("1554545");
+		usuario.setSobre("ijaaçnhna");
+		categoria = new Categoria();
 		categoria.setIdCategoria(1);
+		categoria.setMoedasCategoria(300);
 		categoria.setNome("Teste");
-		categoria.setMoedasCategoria(1);
-		categoriaRepository.save(categoria);
-
-		statusAnuncio.setIdStatus(1);
-		statusAnuncio.setDescricaoStatus("teste");
-		statusAnuncioRepository.save(statusAnuncio);
-	
 		
-		cadastroDto.setNome("Tegfgdhio");
-		cadastroDto.setEmail("ggfhgu@gl.com");
-		cadastroDto.setSenha("4454");
-		cadastroDto.setUserName("tehgo");
-		cadastroDto.setCpf("4454");
-		cadastroDto.setDataNascimento(LocalDate.of(1998, Month.DECEMBER, 22));
-//		cadastroDto.setDataCadastro(LocalDate.of(2021, Month.MARCH, 6));
-		cadastroDto.setNumeroCelular("352");
-		cadastroDto.setGenero("F");
-		cadastroDto.setSobre("Tesh");
-		
-		usuario = usuarioService.cadastrarUsuario(cadastroDto);
-	
+		stats = new StatusAnuncio();
+		stats.setIdStatus(1);
+		stats.setDescricaoStatus("CONCLUIDO");
 
-		anuncio.setTitulo("SENHOR DOS ANEIS");
-		anuncio.setDescricao("LIVRO");
-		anuncio.setStatus(statusAnuncio);
-		anuncio.setNotaAvaliacao(2);
+		foto = new AnuncioFotos();
+		List<AnuncioFotos> fotos = new ArrayList<>();
+		anuncioType = new AnuncioFotosType();
+		anuncioType.setIdAnuncio(1);
+		foto.setFoto("FOTO1");
+		
+		for (AnuncioFotos anuncioFotos : fotos) {
+			anuncioType.setFotos(fotos);
+		}
+		
+		anuncio = new Anuncio();
+		anuncio.setDataCriacao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
+		anuncio.setDescricao("Teste");
+		anuncio.setTitulo("Teste");
+		anuncio.setCategoriaUsuarioAnunciante(categoria.getNome());
+		anuncio.setFotos(fotos);
+		anuncio.setNotaAvaliacao(3);
+		anuncio.setIdAnuncio(1);
 		anuncio.setCategoria(categoria);
 		anuncio.setUsuarioAnunciante(usuario);
-//		DateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
-		anuncio.setDataCriacao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
-		anuncio.setDataExpiracao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
-		anuncio.setDataFim(LocalDateTime.now().plusDays(60));
+		anuncio.setStatus(stats);
 		
+		interesse = new InteresseType(1, 2);
+		interessados = new InteressadosAnuncioType(1, 2, "testando");
 		
+		doadorType = new DoadorType();
+		doadorType.setIdUsuario(usuario.getIdUsuario());
 		
-		mockMvc.perform(post("/api/anuncio/cadastrar")
-				.contentType("application/json")
-				.content(objectMapper.writeValueAsString(anuncio)))
-		        .andExpect(status().isOk());
+		donatarioType = new DonatarioType();
+		donatarioType.setIdDonatario(1);
 		
+	    avaliacao = new AvaliacaoDto();
+		avaliacao.setIdAnuncio(1);
+		avaliacao.setNotaAvaliacao(3);
+		avaliacao.setIdAvaliador(2);
+		
+		statusDto = new StatusAnuncioDto();
+		statusDto.setIdAnuncio(2);
+		statusDto.setIdDonatario(3);
+		statusDto.setStatus(StatusAnuncioEnum.CONCLUIDO);
+		
+		itens = new ItensRestantesType();
+		itens.setItensRestantes(1);
+		itens.setNextIdAnuncio(1);
+		
+		message.setMessage("teste");
+		message.setMessageStatus(MessageEnum.ANUNCIO_CRIADO);
 		
 	}
-	
-	@Test
-	public void TestDeletarAnuncio() throws Exception {
-		
-		Anuncio anuncio = new Anuncio();
-		Categoria categoria = new Categoria();
-		StatusAnuncio statusAnuncio = new StatusAnuncio();
-		Usuario usuario = new Usuario();
 
-		anuncio.setTitulo("TEE");
-		anuncio.setDescricao("TEDO");
-		anuncio.setCategoria(categoria);
-//		DateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
-//		Date data3 = formato2.parse("30/05/2021");
-		anuncio.setDataCriacao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
-		anuncio.setDataExpiracao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
-		anuncio.setDataFim(LocalDateTime.now().plusDays(60));
-		//anuncio.setNotaAvaliacao(1);
-		anuncio.setStatus(statusAnuncio);
-		anuncio.setUsuarioAnunciante(usuario);
+	
+	@Test
+	void consultaAnuncioPaginacaoTest() throws Exception {
+
+		Mockito.when(anuncioService.buscarAnunciosPaginacao(1, 3)).thenReturn(anuncios);
 		
-		categoria.setIdCategoria(1);
-		statusAnuncio.setIdStatus(1);
-		usuario.setIdUsuario(1);
-		
-	    anuncioRepository.save(anuncio);
-	 
-	 
-	    mockMvc.perform(delete("/api/usuario/deletar")
-	    		.contentType("application/json")
-	    		.content(objectMapper.writeValueAsString(anuncio)));  
-	    
-		anuncioRepository.delete(anuncio);
-		
-		
+		mockMvc.perform(
+				get("/api/anuncio/consultar-anuncio-paginacao?limite=10&pagina=0").contentType("application/json"))
+				.andExpect(status().isOk());
+
 	}
 	
 	@Test
-	public void TestAtualizarAnuncio() throws Exception {
-		
-		Anuncio anuncio = new Anuncio();
-		Categoria categoria = new Categoria();
-		StatusAnuncio statusAnuncio = new StatusAnuncio();
-		Usuario usuario = new Usuario();
-		
-		categoria.setIdCategoria(1);
-		statusAnuncio.setIdStatus(1);
-		usuario.setIdUsuario(1);
-		
-		anuncio.setTitulo("TEE");
-		anuncio.setDescricao("TEDO");
-		anuncio.setCategoria(categoria);
-//		DateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
-//		Date data3 = formato2.parse("30/05/2021");
-		anuncio.setDataCriacao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
-		anuncio.setDataExpiracao(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
-		anuncio.setDataFim(LocalDateTime.now().plusDays(60));
-		//anuncio.setNotaAvaliacao(0);
-		anuncio.setStatus(statusAnuncio);
-		anuncio.setUsuarioAnunciante(usuario);
-		
-	    anuncioRepository.save(anuncio);
-	    
-	   anuncio.setTitulo("HUGO CABRET");
-	   anuncio.setDescricao("A CHAVE");
-	   
-	   mockMvc.perform(put("/api/anuncio/atualizar")
-			   .contentType("application/json")
-			   .content(objectMapper.writeValueAsString(anuncio)))
-	           .andExpect(status().isOk());
-	    
-		
-	}
-	
-	
-	
-	@Test
-	public void TestListaStatusAnuncio() throws Exception {
-		
-		mockMvc.perform(get("/api/anuncio/status/lista")
-				.contentType("application/json"))
-		         .andExpect(status().isOk());
-	
-	}
-	
-	
-	@Test
-	public void TestAnunciosPorTitulo() throws Exception {
-		Anuncio anuncio = new Anuncio();
-        anuncio.setTitulo("Teste");
-		
-		
-		mockMvc.perform(get("/api/anuncio/titulo/" + anuncio.getTitulo())
-				.contentType("application/json"))
+	void listaAnuncioPorIdUsuarioTest() throws Exception {
+
+		Mockito.when(anuncioService.buscarAnunciosPorUsuario(usuario.getIdUsuario())).thenReturn(anuncios);
+
+		mockMvc.perform(get("/api/anuncio/usuario/" + usuario.getIdUsuario()).contentType("application/json"))
 				.andExpect(status().isOk());
 	}
 	
 	@Test
-	public void TestAvaliaAnuncio() throws Exception{
-		Anuncio anuncio = new Anuncio();
-		anuncio.setIdAnuncio(6);
-        AvaliacaoDto avalia = new AvaliacaoDto();
-		avalia.setNotaAvaliacao(3);
-		
-		mockMvc.perform(post("/api/anuncio/" + anuncio.getIdAnuncio() + "/avaliar")
-				.contentType("application/json")
-				.content(objectMapper.writeValueAsString(avalia)))
-		        .andExpect(status().isOk());
-		
-		
-		
+	void listaAnuncioPorIdTest() throws Exception {
+
+		Mockito.when(anuncioService.buscarAnuncioPorId(anuncio.getIdAnuncio())).thenReturn(anuncio);
+
+		mockMvc.perform(get("/api/anuncio/" + anuncio.getIdAnuncio()).contentType("application/json"))
+				.andExpect(status().isOk());
 	}
 	
 	
 	@Test
-	public void TestRetornaAvalicaoAnuncio() throws Exception {
-		Anuncio anuncio = new Anuncio();
-		anuncio.setIdAnuncio(6);
-		StatusAnuncio status = new StatusAnuncio();
-		status.setIdStatus(3);
-		anuncio.setNotaAvaliacao(3);
-		anuncio.setStatus(status);
-		
-		
-		mockMvc.perform(get("/api/anuncio/" + anuncio.getIdAnuncio() + "/avaliacao")
-		.contentType("application/json"))
-		.andExpect(status().isOk());
+	void cadastrarAnuncioTest() throws Exception {
+
+		Mockito.when(anuncioService.criarAnuncio(anuncio, true)).thenReturn(message);
+
+		mockMvc.perform(post("/api/anuncio")
+				.contentType("application/json")
+				.content(objectMapper.writeValueAsString(anuncio)))
+				.andExpect(status().isOk());
+
+	}
+	
+
+	@Test
+	void deletarAnuncioTest() throws Exception  {
+
+		Mockito.doNothing().when(anuncioService).deletarAnuncio(anuncio.getIdAnuncio());
 				
+		mockMvc.perform(delete("/api/anuncio/" + anuncio.getIdAnuncio()).contentType("application/json"))
+				.andExpect(status().isOk());
+
+	}
+
+	
+	@Test
+	void atualizarAnuncioTest() throws Exception {
+
+		Mockito.when(anuncioService.salvarAnuncio(anuncio)).thenReturn(anuncio);
+
+		mockMvc.perform(put("/api/anuncio/" + anuncio.getIdAnuncio()).contentType("application/json")
+				.content(objectMapper.writeValueAsString(anuncio))).andExpect(status().isOk());
+
+	}
+	
+	@Test
+	void listaStatusAnuncioTest() throws Exception {
+
+		mockMvc.perform(get("/api/anuncio/status/lista").contentType("application/json")).andExpect(status().isOk());
+
+	}
+	
+	@Test
+	void consultaAnunciosPorPalavrasChaveTest() throws Exception {
+
+		Mockito.when(anuncioService.listarAnunciosPorPalavrasChave("teste", 1, 2)).thenReturn(anuncios);
+		mockMvc.perform(get("/api/anuncio/consultar-anuncios-por-palavras-chave-paginacao?texto=Teste&limite=1&pagina=2")
+				.contentType("application/json")).andExpect(status().isOk());
+
+	}
+
+
+	@Test
+	void consultaAnunciosPorCidadePaginacaoTest() throws Exception {
+
+		Mockito.when(anuncioService.listaAnunciosPorCidadeAnuncio("São paulo", 1, 3)).thenReturn(anuncios);
+		mockMvc.perform(get("/api/anuncio/consultar-anuncios-por-cidade-paginacao?cidade=São Paulo&limite=60&pagina=0")
+				.contentType("application/json")).andExpect(status().isOk());
+
+	}
+	
+	@Test
+	void RetornaAvaliacaoAnuncioTest() throws Exception {
+		Mockito.when(anuncioService.getAvaliacaoAnuncio(anuncio.getIdAnuncio())).thenReturn(anuncio.getNotaAvaliacao());
+
+		mockMvc.perform(get("/api/anuncio/" + anuncio.getIdAnuncio() + "/avaliacao").contentType("application/json"))
+				.andExpect(status().isOk());
+
+	}
+	
+	@Test
+	void AvaliaAnuncioTest() throws Exception {
 		
+		Mockito.when(anuncioService.registraAvaliacaoAnuncio(avaliacao)).thenReturn(anuncio);
+		
+		mockMvc.perform(post("/api/anuncio/avaliar").contentType("application/json")
+				.content(objectMapper.writeValueAsString(avaliacao))).andExpect(status().isOk());
+
+	}
+	
+	@Test
+	void AlteraStatusAnuncioTest() throws Exception {
+        
+		Mockito.when(anuncioService.alterarStatusAnuncio(statusDto))
+		.thenReturn(moedas);
+		
+		mockMvc.perform(post("/api/anuncio/alterar-status").contentType("application/json")
+				.content(objectMapper.writeValueAsString(statusDto))).andExpect(status().isOk());
+
+	}
+	
+	@Test
+	void AdicionaFotosAnuncioTest() throws Exception {
+		
+		
+		Mockito.when(anuncioService.cadastrarFotosAnuncio(anuncioType)).thenReturn(anuncio);
+
+		mockMvc.perform(post("/api/anuncio/fotos").contentType("application/json")
+				.content(objectMapper.writeValueAsString(anuncioType))).andExpect(status().isOk());
+
+	}
+	
+	@Test
+	void RetornaDoadorAnuncioTest() throws Exception {
+	
+		Mockito.when(anuncioService.doador(anuncio.getIdAnuncio())).thenReturn(doadorType);
+
+		mockMvc.perform(
+				get("/api/anuncio/" + anuncio.getIdAnuncio() + "/doador").contentType("application/json"))
+				.andExpect(status().isOk());
+
+	}
+	
+	@Test
+	void RetornaDonatarioAnuncioTest() throws Exception {
+	
+		Mockito.when(anuncioService.donatario(anuncio.getIdAnuncio())).thenReturn(donatarioType);
+
+		mockMvc.perform(
+				get("/api/anuncio/" + anuncio.getIdAnuncio() + "/donatario").contentType("application/json"))
+				.andExpect(status().isOk());
+
 	}
 	
 	
-	
-	
+	@Test
+	void DemonstraInteresseAnuncioTest() throws Exception {
+         
+		Mockito.doNothing().when(anuncioService).registrarInteresseAnuncio(interesse);
+		
+		mockMvc.perform(post("/api/anuncio/interesse").contentType("application/json")
+				.content(objectMapper.writeValueAsString(interesse))).andExpect(status().isOk());
 
+	}
 	
-	/*@Test
-	public void TestCadastrarAnuncioTituloVazio() throws Exception {
+	@Test
+	void RetornaInteressadosAnuncioTest() throws Exception {
+
+		Mockito.when(anuncioService.consultarInteressadosAnuncio(interesse.getIdAnuncio())).thenReturn(interesseTypeLista);
+
+		mockMvc.perform(
+				get("/api/anuncio/interessados/" + interessados.getIdAnuncio()).contentType("application/json"))
+				.andExpect(status().isOk());
+
+	}
+
+	@Test
+	void RetornaIndicadorAnunciosRestantesTest() throws Exception {
+		Mockito.when(anuncioService.getItensRestantes(anuncio.getIdAnuncio())).thenReturn(itens);
 		
-		Anuncio anuncio = new Anuncio();
-		Categoria categoria = new Categoria();
-		StatusAnuncio statusAnuncio = new StatusAnuncio();
-		Usuario usuario = new Usuario();
-		
-		categoria.setIdCategoria(1);
-		statusAnuncio.setIdStatus(2);
-		usuario.setIdUsuario(1);
-		
-		anuncio.setTitulo(null);
-		anuncio.setDescricao("Livro");
-		anuncio.setCategoria(categoria);
-		DateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
-		Date data = formato2.parse("11/02/2021");
-		Date data2 = formato2.parse("30/06/2021");
-		Date data3 = formato2.parse("30/05/2021");
-		anuncio.setDataCriacao(data);
-		anuncio.setDataExpiracao(data2);
-		anuncio.setDataFim(data3);
-		anuncio.setStatus(statusAnuncio);
-		anuncio.setUsuarioAnunciante(usuario);
-		
-		
-		mockMvc.perform(post("/api/anuncio/cadastrar")
-				.contentType("application/json")
-				.content(objectMapper.writeValueAsString(anuncio)))
-		        .andExpect(status().isOk());
-		
-		
-	}*/
-	
-	
-	
-	
-	
-	
+		mockMvc.perform(get("/api/anuncio/itens-restantes/" + anuncio.getIdAnuncio())
+				.contentType("application/json"))
+				.andExpect(status().isOk());
+	}
+
 	
 	
 

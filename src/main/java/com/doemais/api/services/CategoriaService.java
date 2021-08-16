@@ -34,7 +34,7 @@ public class CategoriaService {
 		if(categoria.getNome().trim().isEmpty()) {
 			throw new IllegalArgumentException("O nome da categoria não pode ser vazio");
 		}
-		if(categoria.getMoedasCategoria() == 0) {
+		if(categoria.getMoedasCategoria() <= 0) {
 			throw new IllegalArgumentException("A categoria precisa de moedas");
 		}
 	}

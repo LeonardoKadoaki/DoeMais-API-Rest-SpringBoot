@@ -26,12 +26,19 @@ import com.doemais.api.dto.CadastroDto;
 import com.doemais.api.dto.ReputacaoDto;
 import com.doemais.api.exception.ConflictException;
 import com.doemais.api.exception.EntidadeNaoEncontradaException;
+import com.doemais.api.models.Anuncio;
+import com.doemais.api.models.Medalha;
 import com.doemais.api.models.ReputacaoUsuario;
 import com.doemais.api.models.Usuario;
+import com.doemais.api.models.UsuarioMedalha;
 import com.doemais.api.repository.AuthRepository;
+import com.doemais.api.repository.MedalhaRepository;
 import com.doemais.api.repository.ReputacaoRepository;
 import com.doemais.api.repository.ResumoReputacaoRepository;
+import com.doemais.api.repository.UsuarioMedalhaRepository;
 import com.doemais.api.repository.UsuarioRepository;
+import com.doemais.api.services.MedalhaService;
+import com.doemais.api.services.MissaoService;
 import com.doemais.api.services.UsuarioService;
 
 import io.swagger.annotations.Api;
@@ -56,10 +63,13 @@ public class UsuarioController {
 
 	@Autowired
 	ReputacaoRepository reputacaoRepository;
-
+	
 	@Autowired
 	ResumoReputacaoRepository resumoReputacaoRepository;
-
+	
+	@Autowired
+	MedalhaService medalhaService;
+	
 	@PersistenceContext
 	private EntityManager em;
 
@@ -71,46 +81,52 @@ public class UsuarioController {
 
 	@ApiOperation(value = "Retorna as informações de perfil do usuário")
 	@GetMapping("/perfil/{idUsuario}")
-	public Usuario listarUsuarioUnico(@PathVariable(value = "idUsuario") long idUsuario) throws EntidadeNaoEncontradaException {
+	public Usuario listarUsuarioUnico(@PathVariable(value = "idUsuario") long idUsuario)
+			throws EntidadeNaoEncontradaException {
 		return usuarioService.buscarUsuarioPorId(idUsuario);
 	}
 
 	@ApiOperation(value="Cadastra um usuário")
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
-	public Usuario cadastrarUsuario(@RequestBody @Valid CadastroDto cadastro) throws ConflictException{
+	public Usuario cadastrarUsuario(@RequestBody @Valid CadastroDto cadastro)
+			throws ConflictException {
 		return usuarioService.cadastrarUsuario(cadastro);
 	}
 	
 	@ApiOperation(value = "Deleta um usuário")
 	@DeleteMapping("/perfil/{idUsuario}")
-	public void deletarUsuario(@PathVariable(value = "idUsuario") long idUsuario) throws EntidadeNaoEncontradaException {
+	public void deletarUsuario(@PathVariable(value = "idUsuario") long idUsuario)
+			throws EntidadeNaoEncontradaException {
 		usuarioService.deletarUsuario(idUsuario);
 	}
 
 	@ApiOperation(value = "Atualiza um usuário")
 	@PutMapping("/perfil/{idUsuario}")
-	public Usuario atualizarUsuario(@RequestBody @Valid Usuario usuario) throws ConflictException {
+	public Usuario atualizarUsuario(@RequestBody @Valid Usuario usuario)
+			throws ConflictException {
 		return usuarioService.atualizarUsuario(usuario);
 	}
 
 	@ApiOperation(value = "Retorna avaliação de um usuário")
 	@GetMapping("/perfil/{idUsuario}/avaliacao")
-	public AvaliacaoType consultarAvaliacaoUsuario(@PathVariable(value = "idUsuario") long idUsuario) throws EntidadeNaoEncontradaException {
-		double a = usuarioService.getAvaliacaoUsuario(idUsuario);
-		AvaliacaoType ava = new AvaliacaoType();
-		ava.setAvaliacao(a);
-		return ava;
+	public AvaliacaoType consultarAvaliacaoUsuario(@PathVariable("idUsuario") long idUsuario)
+			throws EntidadeNaoEncontradaException {
+		return usuarioService.getAvaliacaoUsuario(idUsuario);
 	}
 
 	@ApiOperation(value="Avalia um usuário")
 	@PostMapping("/perfil/{idUsuario}/avaliar")
-	public ReputacaoUsuario avaliarUsuario(@RequestBody @Valid ReputacaoDto reputacao, @PathVariable(value = "idUsuario") long idUsuario) throws EntidadeNaoEncontradaException {
+	public ReputacaoUsuario avaliarUsuario(@RequestBody @Valid ReputacaoDto reputacao,
+										   @PathVariable("idUsuario") long idUsuario)
+			throws EntidadeNaoEncontradaException, ConflictException {
 		return usuarioService.registraAvaliacaoUsuario(reputacao, idUsuario);
-
-		/* TODO:
-		 * Adicionar coluna "id_usuario_avaliador" na tabela reputacao_usuario,
-		 * para que o usuário não possa avaliar o mesmo perfil mais de uma vez...
-		 */
+	}
+	
+	@ApiOperation(value="Retornar medalhas obtidas por usuário")
+	@GetMapping("/perfil/{idUsuario}/medalha")
+	public List<UsuarioMedalha> consultaMedalhaUsuario(@PathVariable("idUsuario") long idUsuario)
+			throws EntidadeNaoEncontradaException {
+		return medalhaService.buscarMedalhasPorUsuario(idUsuario);
 	}
 }

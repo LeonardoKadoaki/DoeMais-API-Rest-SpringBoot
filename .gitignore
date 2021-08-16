@@ -23,3 +23,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### Outros ###
+#src/main/resources/application.properties
+logs/

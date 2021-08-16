@@ -13,12 +13,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
-public class ReputacaoDtoTest {
+ class ReputacaoDtoTest {
 
 	@Test
-	public void TestSettersAndGetters() {
+	 void TestSettersAndGetters() {
 	ReputacaoDto reputacao = new ReputacaoDto();
 	
 	    reputacao.setNotaAvaliacao(2);
@@ -30,7 +30,7 @@ public class ReputacaoDtoTest {
 	}
 	
 	@Test
-	public void TestandoEquals() {
+	 void TestandoEquals() {
 		ReputacaoDto reputacao = new ReputacaoDto();
 		ReputacaoDto reputacao2 = new ReputacaoDto();
 		
@@ -47,7 +47,7 @@ public class ReputacaoDtoTest {
 	}
 	
 	@Test
-	public void TestandoNotEquals() {
+	 void TestandoNotEquals() {
 		ReputacaoDto reputacao = new ReputacaoDto();
 		ReputacaoDto reputacao2 = new ReputacaoDto();
 		
@@ -64,7 +64,7 @@ public class ReputacaoDtoTest {
 	}
 	
 	@Test
-	public void TestHashCode() {
+	 void TestHashCode() {
 		ReputacaoDto reputacao = new ReputacaoDto();
 		ReputacaoDto reputacao2 = new ReputacaoDto();
 		

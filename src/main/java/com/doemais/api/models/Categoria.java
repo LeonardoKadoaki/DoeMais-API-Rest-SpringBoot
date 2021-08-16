@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "CATEGORIA")
+@Table(name = "categoria")
 public class Categoria {
 
 	@Id
@@ -24,6 +24,16 @@ public class Categoria {
     
 	private int moedasCategoria;
 	
+	public Categoria(long idCategoria, @NotNull @Size(min = 1, max = 70) String nome, int moedasCategoria) {
+		this.idCategoria = idCategoria;
+		this.nome = nome;
+		this.moedasCategoria = moedasCategoria;
+	}
+	
+	public Categoria() {
+		
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

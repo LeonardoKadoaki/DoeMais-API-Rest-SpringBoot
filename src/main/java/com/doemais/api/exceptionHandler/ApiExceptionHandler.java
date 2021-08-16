@@ -12,7 +12,8 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.doemais.api.exception.ConflictException;
 import com.doemais.api.exception.EntidadeNaoEncontradaException;
-import com.doemais.api.exception.EntidadeSemValorException;
+import com.doemais.api.exception.MissaoException;
+import com.doemais.api.exception.MoedasException;
 import com.doemais.api.exception.ObjectError;
 
 
@@ -69,4 +70,19 @@ public class ApiExceptionHandler{
 		return new ResponseEntity<>(error, HttpStatus.CONFLICT);
 	}
 	
+	@ExceptionHandler(MoedasException.class)
+	public ResponseEntity<?> handleMoedasException(MoedasException exception, WebRequest request){
+		
+		ObjectError error = new ObjectError(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage(), new Date());
+		
+		return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@ExceptionHandler(MissaoException.class)
+	public ResponseEntity<?> handleMissaoException(MissaoException exception, WebRequest request){
+		
+		ObjectError error = new ObjectError(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage(), new Date());
+		
+		return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

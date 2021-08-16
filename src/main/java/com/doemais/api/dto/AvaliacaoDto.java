@@ -19,10 +19,12 @@ public class AvaliacaoDto {
 	}
 
 	public void setNotaAvaliacao(double notaAvaliacao)
-	throws IllegalArgumentException {
-		if (notaAvaliacao < 1 || notaAvaliacao > 5)
+			throws IllegalArgumentException {
+
+		if (notaAvaliacao < 1 || notaAvaliacao > 5) {
 			throw new IllegalArgumentException(
 					String.format("notaAvaliacao deve ser >= 1 e <= 5, mas é %.2f", notaAvaliacao));
+		}
 
 		this.notaAvaliacao = notaAvaliacao;
 	}
@@ -66,5 +68,4 @@ public class AvaliacaoDto {
 			return false;
 		return true;
 	}
-	
 }

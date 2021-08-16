@@ -1,21 +1,18 @@
 package com.doemais.api.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "usuario")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +37,6 @@ public class Usuario implements Serializable {
 	private String cpf;
 
 	@Column(nullable = true, unique = true, length = 11)
-	@Size(min = 0, max = 11)
 	private String rg;
 
 	@NotNull
@@ -68,6 +64,10 @@ public class Usuario implements Serializable {
 	@Column(nullable = true, length = 600)
 	private String fotoPerfil;
 
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+	@Transient
+	private String categoria;
+
 	public Usuario() {
 		super();
 	}
@@ -79,7 +79,6 @@ public class Usuario implements Serializable {
 			@NotNull @Pattern(regexp = "\\(\\d{2}\\)\\d{5}-\\d{4}") String numeroCelular,
 			@NotNull @Size(min = 1, max = 1, message = "Insira F (Feminino), M (Masculino) ou O (Outros)") String genero,
 			@Size(min = 0, max = 300, message = "O texto deve conter no máximo 300 caracteres") String sobre) {
-		super();
 		this.nome = nome;
 		this.userName = userName;
 		this.cpf = cpf;
@@ -193,6 +192,14 @@ public class Usuario implements Serializable {
 
 	public void setFotoPerfil(String fotoPerfil) {
 		this.fotoPerfil = fotoPerfil;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	@Override

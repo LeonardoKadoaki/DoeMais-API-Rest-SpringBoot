@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Language" content="pt-br">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type='text/css'>
+<title>Doe+</title>
+
+<style>
+#containerGeral {
+	width: 70%; /* largura do box */
+	padding: 0 5%; /* padding Ã  esquerda e Ã  direita */
+	border-width: 0 1%; /* borda Ã  esquerda e Ã  direita */
+	background-color: rgb(255, 255, 255);
+}
+
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+#bem-vindo {
+	box-shadow: 0 0 1em rgb(167, 160, 160);
+	padding: 0 5%; /* padding Ã  esquerda e Ã  direita */
+	border: thin solid rgb(7, 173, 250);
+	background-color: rgb(255, 255, 255);
+	margin-bottom: 5%;
+}
+
+#infoProduto {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 110%;
+}
+
+#infoDoe {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 110%;
+}
+
+#titulo {
+	color: rgb(255, 255, 255);
+	margin-left: 2%;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 140%;
+}
+
+#containerTitulo {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	background-color: rgb(116, 201, 235);
+	width: 100%;
+}
+
+#teste2 {
+	color: rgb(0, 0, 0);
+}
+
+.botao button {
+	color: rgb(255, 255, 255);
+	background-color: rgb(116, 201, 235);
+	border: 1px solid rgb(0, 0, 0);
+	border-radius: 20px;
+}
+
+body {
+	background-color: rgb(255, 255, 255);
+}
+</style>
+
+</head>
+
+
+
+<body>
+
+	<div class="container" id="containerGeral">
+		<div class="container" id="containerTitulo">
+			<div id="titulo">Doe+ - Redefinição de Senha!</div>
+			<div></div>
+		</div>
+
+		<div class="container" id="bem-vindo">
+
+			<div id="infoProduto">
+			    <p>Olá, </p>
+				<p>Caso não tenha solicitado a recuperação de senha, ignore este
+					email. Outro usuário pode ter colocado seu email por engano.</p>
+				<p>O link solicitado para recuperação de senha só é válido por 1 hora e meia.</p>
+
+				<div id="infoDoe">
+					<br />
+					<h4 id="teste2">Abraços, equipe Doe+</h4>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+
+</html>

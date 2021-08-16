@@ -2,7 +2,6 @@ package com.doemais.api.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "ReputacaoUsuario")
+@Table(name = "reputacao_usuario")
 public class ReputacaoUsuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,6 +40,10 @@ public class ReputacaoUsuario implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idUsuario", nullable = false)
 	private Usuario usuario;
+
+	@NotNull
+	@Column(nullable = false)
+	private long idAvaliador;
 
 	public long getIdAvaliacao() {
 		return idAvaliacao;
@@ -82,6 +85,14 @@ public class ReputacaoUsuario implements Serializable {
 		this.usuario = usuario;
 	}
 
+	public long getIdAvaliador() {
+		return idAvaliador;
+	}
+
+	public void setIdAvaliador(long idAvaliador) {
+		this.idAvaliador = idAvaliador;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -109,9 +120,4 @@ public class ReputacaoUsuario implements Serializable {
 		return "ReputacaoUsuario [idAvaliacao=" + idAvaliacao + ", notaAvaliacao=" + notaAvaliacao + ", dataRegistro="
 				+ dataRegistro + ", papelUsuario=" + papelUsuario + ", usuario=" + usuario + "]";
 	}
-	
-	
-	
-
-
 }

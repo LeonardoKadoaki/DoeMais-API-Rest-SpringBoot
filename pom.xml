@@ -10,7 +10,7 @@
 	<packaging>jar</packaging>
 
 	<name>Doe+</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Aplicativo de doações móvel</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -53,6 +53,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.21</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -63,11 +64,11 @@
 			<artifactId>validation-api</artifactId>
 			<version>2.0.1.Final</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.data</groupId> -->
-<!-- 			<artifactId>spring-data-rest-webmvc</artifactId> -->
-<!-- 			<version>3.4.5</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.data</groupId> -->
+		<!-- <artifactId>spring-data-rest-webmvc</artifactId> -->
+		<!-- <version>3.4.5</version> -->
+		<!-- </dependency> -->
 
 		<!-- <dependency> -->
 		<!-- <groupId>org.springframework.boot</groupId> -->
@@ -126,9 +127,27 @@
 			<version>2.8.6</version>
 		</dependency>
 
+		<!-- send email -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+		<!-- Hibernate Search / FullText Search -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-orm</artifactId>
+			<version>5.10.0.Final</version>
+		</dependency>
+
+		<!-- Dependencia para utilizar o Template Engine ao enviar emails -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<version>2.3.1.RELEASE</version>
+		</dependency>
 
 	</dependencies>
-
 
 
 	<build>
@@ -137,8 +156,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
 		</plugins>
 	</build>
-
-
 </project>

@@ -6,6 +6,15 @@ public class InteresseType {
 	
 	private long idAnuncio;
 
+	public InteresseType(long idUsuario, long idAnuncio) {
+		this.idUsuario = idUsuario;
+		this.idAnuncio = idAnuncio;
+	}
+	
+	public InteresseType() {
+		
+	}
+
 	public long getIdUsuario() {
 		return idUsuario;
 	}

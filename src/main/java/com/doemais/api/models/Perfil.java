@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
-@Table(name = "PERFIL")
+@Table(name = "perfil")
 public class Perfil implements GrantedAuthority{
 
 	private static final long serialVersionUID = 1L;

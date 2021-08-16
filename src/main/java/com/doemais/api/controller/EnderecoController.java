@@ -69,13 +69,13 @@ public class EnderecoController {
 		
 	@ApiOperation(value = "Deleta o endereço do usuário")
 	@DeleteMapping("/usuario/{idUsuario}")
-	public void deletarUsuario(@PathVariable(value = "idUsuario") long idUsuario) {
+	public void deletarEndereco(@PathVariable(value = "idUsuario") long idUsuario) {
 		enderecoRepository.deleteByUsuarioIdUsuario(idUsuario);
 	}
 
 	@ApiOperation(value = "Atualiza o endereço do usuário")
 	@PutMapping("/usuario/{idUsuario}")
-	public Endereco atualizarUsuario(@RequestBody @Valid Endereco endereco) {
+	public Endereco atualizarEndereco(@RequestBody @Valid Endereco endereco) {
 		return enderecoRepository.save(endereco);
 	}
 }

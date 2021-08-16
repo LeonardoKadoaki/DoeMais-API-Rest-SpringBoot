@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "ResumoReputacaoUsuario")
+@Table(name = "resumo_reputacao_usuario")
 public class ResumoReputacaoUsuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -24,12 +24,10 @@ public class ResumoReputacaoUsuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idResumo;
 	
-	@NotNull
-	@Column(nullable = false, length = 15)
+	@Column(length = 15)
 	@Size(min = 1, max = 15)
 	private String descricaoResumo;
-	
-	
+
 	@NotNull
 	@Column(nullable = false)
 	private double notaAvaliacao;
@@ -41,6 +39,19 @@ public class ResumoReputacaoUsuario implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
+	
+	public ResumoReputacaoUsuario(long idResumo, @Size(min = 1, max = 15) String descricaoResumo,
+			@NotNull double notaAvaliacao, @NotNull Date dataAtualizacaoRegistro, Usuario usuario) {
+		this.idResumo = idResumo;
+		this.descricaoResumo = descricaoResumo;
+		this.notaAvaliacao = notaAvaliacao;
+		this.dataAtualizacaoRegistro = dataAtualizacaoRegistro;
+		this.usuario = usuario;
+	}
+	
+	public ResumoReputacaoUsuario() {
+		
+	}
 
 	public long getIdResumo() {
 		return idResumo;
@@ -110,11 +121,4 @@ public class ResumoReputacaoUsuario implements Serializable {
 				+ ", notaAvaliacao=" + notaAvaliacao + ", dataAtualizacaoRegistro=" + dataAtualizacaoRegistro
 				+ ", usuario=" + usuario + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
 }

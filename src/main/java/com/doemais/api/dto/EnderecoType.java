@@ -21,6 +21,20 @@ public class EnderecoType {
 	
 	@NotNull
 	private String localidade;
+	
+	public EnderecoType(@NotNull String logradouro, @NotNull String cep, @NotNull String complemento,
+			@NotNull String bairro, @NotNull String uf, @NotNull String localidade) {
+		this.logradouro = logradouro;
+		this.cep = cep;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.uf = uf;
+		this.localidade = localidade;
+	}
+	
+	public EnderecoType() {
+		
+	}
 
 	public String getLogradouro() {
 		return logradouro;

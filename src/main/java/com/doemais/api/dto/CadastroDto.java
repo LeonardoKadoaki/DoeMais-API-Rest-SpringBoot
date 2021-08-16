@@ -44,6 +44,29 @@ public class CadastroDto {
 	@Size(min = 0, max = 300, message = "O texto deve conter no máximo 300 caracteres")
 	private String sobre;
 
+	public CadastroDto(@NotBlank(message = "{nome.not.blank}") @Size(min = 1, max = 70) String nome,
+			@NotBlank(message = "{email.not.blank}") @Email(message = "{email.not.valid}") String email,
+			@NotBlank(message = "{senha.not.blank}") @Size(min = 1, max = 80) String senha,
+			@NotBlank @Size(min = 1, max = 30) String userName, @NotBlank @Size(min = 11, max = 11) String cpf,
+			@NotBlank @Past(message = "A data de nascimento não pode ser maior ou igual a data atual") LocalDate dataNascimento,
+			@NotBlank String numeroCelular,
+			@NotBlank @Size(min = 1, max = 1, message = "Insira F (Feminino), M (Masculino) ou O (Outros)") String genero,
+			@Size(min = 0, max = 300, message = "O texto deve conter no máximo 300 caracteres") String sobre) {
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.userName = userName;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+		this.numeroCelular = numeroCelular;
+		this.genero = genero;
+		this.sobre = sobre;
+	}
+	
+	public CadastroDto() {
+		
+	}
+
 	public String getNome() {
 		return nome;
 	}

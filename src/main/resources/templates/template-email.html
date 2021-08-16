@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Language" content="pt-br">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/estilo.css">
+<title>Doe+ - Redefinição de Senha</title>
+<style>
+#containerGeral {
+	width: 70%; /* largura do box */
+	padding: 0 5%; /* padding Ã  esquerda e Ã  direita */
+	border-width: 0 1%; /* borda Ã  esquerda e Ã  direita */
+	background-color: 3366FF;
+}
+
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+p {
+	font-family: Graphik-Medium, Graphik-Regular, "Gotham SSm A",
+		"Gotham SSm B", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 0px 0px 16px;
+	font-weight: 500;
+	letter-spacing: -0.03em;
+	font-size: 1.25rem;
+	line-height: 1.25;
+	color: Black;
+}
+
+h4 {
+	font-family: Graphik-Medium, Graphik-Regular, "Gotham SSm A",
+		"Gotham SSm B", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 0px 0px 16px;
+	font-weight: 500;
+	letter-spacing: -0.03em;
+	font-size: 1.25rem;
+	line-height: 1.25;
+	color: Black;
+}
+
+#bem-vindo {
+	box-shadow: 0 0 1em rgb(167, 160, 160);
+	padding: 0 5%; /* padding Ã  esquerda e Ã  direita */
+	border: thin solid rgb(7, 173, 250);
+	background-color: rgb(255, 255, 255);
+	margin-bottom: 5%;
+}
+
+#infoProduto {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 110%;
+}
+
+#infoDoe {
+	font-family: Graphik-Medium, Graphik-Regular, "Gotham SSm A",
+		"Gotham SSm B", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 0px 0px 16px;
+	font-weight: 500;
+	letter-spacing: -0.03em;
+	font-size: 1.25rem;
+	line-height: 1.25;
+	color: Black;
+}
+
+#titulo {
+	color: blue;
+	margin-left: 2%;
+	font-family: Graphik-Medium, Graphik-Regular, "Gotham SSm A",
+		"Gotham SSm B", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 200%;
+}
+
+.circle {
+	margin: 1% 2% 1% 0%;
+	background-color: #aaa;
+	border-radius: 50%;
+	width: 62px;
+	height: 62px;
+	overflow: hidden;
+	position: relative;
+}
+
+.circle img {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+#containerTitulo {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	background-color: rgb(116, 201, 235);
+	width: 100%;
+}
+
+body {
+	background-color: rgb(255, 255, 255);
+}
+
+#botao {
+	display: inline-block;
+	padding: 15px 25px;
+	font-size: 24px;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	outline: none;
+	color: #fff;
+	background-color: #008CBA;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 9px #999;
+}
+
+#botao:hover {
+	background-color: #008CBA
+}
+
+#botao:active {
+	background-color: #008CBA;
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
+}
+</style>
+
+
+</head>
+
+<body>
+
+	<div class="container" id="containerGeral">
+		<div class="container" id="containerTitulo">
+			<div id="titulo">Doe+ - Redefinição de Senha!</div>
+			<div></div>
+		</div>
+
+		<div class="container" id="bem-vindo">
+
+			<div id="infoProduto">
+				<p>Olá, Alguém solicitou uma nova senha para a conta associada
+					ao email:
+				<p th:text="${email}">. Nenhuma alteração foi feita em sua conta
+					ainda.</p>
+				<p>Você pode redefinir sua senha clicando no botão abaixo: Se
+					você não solicitou uma nova senha, informe-nos imediatamente
+					respondendo a este e-mail.</p>
+
+				<div class="w3-panel w3-green">
+					<a th:href="${URL}"><button id="botao" >Redefinir Senha</button></a>
+				</div>
+
+
+				<div id="infoDoe">
+					<h4>Abraços, equipe Doe+</h4>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>

@@ -40,7 +40,9 @@ public class SwaggerConfig {
 						new Tag("Usuario", "Gerencia os usuários pessoa física"),
 						new Tag("Categoria", "Gerencia as categorias"), 
 						new Tag("Auth", "Gerencia a autenticação"),
-						new Tag("Endereco", "Gerencia os endereços"));
+						new Tag("Endereco", "Gerencia os endereços"),
+						new Tag("Ranking", "Gerencia os rankings"),
+						new Tag("Missao", "Gerencia as missões"));
 //				.ignoredParameterTypes(Auth.class);	
 
 	}

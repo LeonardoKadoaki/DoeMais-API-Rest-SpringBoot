@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 
+import com.doemais.api.dto.*;
+import com.doemais.api.exception.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.doemais.api.dto.AnuncioFotosType;
-import com.doemais.api.dto.AvaliacaoDto;
-import com.doemais.api.dto.AvaliacaoType;
-import com.doemais.api.dto.DoadorDonatarioType;
-import com.doemais.api.dto.InteressadosAnuncioType;
-import com.doemais.api.dto.InteresseType;
-import com.doemais.api.dto.StatusAnuncioDto;
-import com.doemais.api.exception.ConflictException;
-import com.doemais.api.exception.EntidadeNaoEncontradaException;
+import com.doemais.api.exception.AnuncioException;
 import com.doemais.api.models.Anuncio;
 import com.doemais.api.models.StatusAnuncio;
 import com.doemais.api.repository.AnuncioFotosRepository;
@@ -69,10 +63,7 @@ public class AnuncioController {
 			@ApiParam(value="pagina", required=true) @RequestParam("pagina") final int pagina, 
 			@ApiParam(value="limite", required=true) @RequestParam("limite") final int limite)
 			throws EntidadeNaoEncontradaException {
-
-		List<Anuncio> anuncios = anuncioService.buscarAnunciosPaginacao(pagina, limite);
-
-		return anuncios;
+		return anuncioService.buscarAnunciosPaginacao(pagina, limite);
 	}
 
 	@ApiOperation(value = "Consulta o histórico de anúncios por idUsuario")
@@ -84,25 +75,29 @@ public class AnuncioController {
 
 	@ApiOperation(value = "Consulta as informações de um anúncio")
 	@GetMapping("/{idAnuncio}")
-	public Anuncio listarAnuncioUnico(@PathVariable(value = "idAnuncio") long idAnuncio) throws EntidadeNaoEncontradaException {
+	public Anuncio listarAnuncioUnico(@PathVariable(value = "idAnuncio") long idAnuncio)
+			throws EntidadeNaoEncontradaException {
 		return anuncioService.buscarAnuncioPorId(idAnuncio);
 	}
 
 	@ApiOperation(value = "Cadastra um anúncio")
 	@PostMapping
-	public Anuncio cadastrarAnuncio(@RequestBody @Valid Anuncio anuncio) throws EntidadeNaoEncontradaException, ConflictException {
-		return anuncioService.cadastrarAnuncio(anuncio);
+	public MessageObjectType cadastrarAnuncio(@RequestBody @Valid Anuncio anuncio)
+			throws EntidadeNaoEncontradaException, ConflictException, MissaoException, MoedasException, AnuncioException {
+		return anuncioService.criarAnuncio(anuncio, true);
 	}
 
 	@ApiOperation(value = "Deleta um anúncio")
 	@DeleteMapping("/{idAnuncio}")
-	public void deletarAnuncio(@PathVariable(value = "idAnuncio") long idAnuncio) throws EntidadeNaoEncontradaException {
+	public void deletarAnuncio(@PathVariable(value = "idAnuncio") long idAnuncio)
+			throws EntidadeNaoEncontradaException {
 		anuncioService.deletarAnuncio(idAnuncio);
 	}
 
 	@ApiOperation(value = "Atualiza um anúncio")
 	@PutMapping("/{idAnuncio}")//NAO CONCORDO COM ESSA MERDA, VOU TIRAR NO PRODUTO FINAL
-	public Anuncio atualizarAnuncio(@RequestBody @Valid Anuncio anuncio) throws EntidadeNaoEncontradaException {
+	public Anuncio atualizarAnuncio(@RequestBody @Valid Anuncio anuncio)
+			throws EntidadeNaoEncontradaException, MissaoException, MoedasException {
 		return anuncioService.salvarAnuncio(anuncio);
 	}
 
@@ -113,13 +108,14 @@ public class AnuncioController {
 		return statusAnuncioRepository.findAll();
 	}
 
-	@ApiOperation(value = "Consulta os anúncios por título do anúncio com paginação")
-	@GetMapping("/consultar-anuncios-por-titulo-paginacao")
-	public List<Anuncio> listarAnunciosPorTitulo(
-			@ApiParam(value="titulo", required=true) @RequestParam("titulo") String titulo, 
-			@ApiParam(value="pagina", required=true) @RequestParam("pagina") final int pagina, 
-			@ApiParam(value="limite", required=true) @RequestParam("limite") final int limite) throws EntidadeNaoEncontradaException {
-		return anuncioService.listaAnunciosPorTituloAnuncio(titulo, pagina, limite);
+	@ApiOperation(value = "Consulta os anúncios por palavras-chave, com paginação. As palavras-chave são aplicadas no título e na descrição do anúncio")
+	@GetMapping("/consultar-anuncios-por-palavras-chave-paginacao")
+	public List<Anuncio> listarAnunciosPorPalavrasChave(
+			@ApiParam(value="texto", required=true) @RequestParam("texto") String texto,
+			@ApiParam(value="pagina", required=true) @RequestParam("pagina") final int pagina,
+			@ApiParam(value="limite", required=true) @RequestParam("limite") final int limite)
+			throws EntidadeNaoEncontradaException {
+		return anuncioService.listarAnunciosPorPalavrasChave(texto, pagina, limite);
 	}
 
 	@ApiOperation(value = "Consulta os anúncios por cidade do anúncio com paginação")
@@ -127,53 +123,74 @@ public class AnuncioController {
 	public List<Anuncio> listarAnunciosPorCidade(
 			@ApiParam(value="cidade", required=true) @RequestParam("cidade") String cidade,
 			@ApiParam(value="pagina", required=true) @RequestParam("pagina") final int pagina, 
-			@ApiParam(value="limite", required=true) @RequestParam("limite") final int limite) throws EntidadeNaoEncontradaException {
+			@ApiParam(value="limite", required=true) @RequestParam("limite") final int limite)
+			throws EntidadeNaoEncontradaException {
 		return anuncioService.listaAnunciosPorCidadeAnuncio(cidade, pagina, limite);
 	}
 
-	//TODO consertar. Não pode ser retornado um double que não esteja no formato JSON
 	@ApiOperation(value = "Retorna a avaliação do anúncio")
 	@GetMapping("/{idAnuncio}/avaliacao")
-	public AvaliacaoType consultarAvaliacaoAnuncio(@PathVariable(value = "idAnuncio") long idAnuncio) throws EntidadeNaoEncontradaException {
+	public AvaliacaoType consultarAvaliacaoAnuncio(@PathVariable(value = "idAnuncio") long idAnuncio)
+			throws EntidadeNaoEncontradaException {
 		double a = anuncioService.getAvaliacaoAnuncio(idAnuncio);
-		AvaliacaoType ava = new AvaliacaoType();
-		ava.setAvaliacao(a);
-		return ava;
+		AvaliacaoType av = new AvaliacaoType();
+		av.setAvaliacao(a);
+		return av;
 	}
-
+	
 	@ApiOperation(value = "Avalia o anúncio")
 	@PostMapping("/avaliar")
-	public Anuncio avaliarAnuncio(@RequestBody @Valid AvaliacaoDto av) throws EntidadeNaoEncontradaException, ConflictException {
+	public Anuncio avaliarAnuncio(@RequestBody @Valid AvaliacaoDto av)
+			throws EntidadeNaoEncontradaException, ConflictException {
 		return anuncioService.registraAvaliacaoAnuncio(av);
 	}
 	
 	@ApiOperation(value = "Altera o status do anúncio")
 	@PostMapping("/alterar-status")
-	public Anuncio alterarStatusAnuncio(@RequestBody @Valid StatusAnuncioDto statusAnuncioDto) throws EntidadeNaoEncontradaException, ConflictException {
+	public List<MessageMoedasObjectType> alterarStatusAnuncio(@RequestBody @Valid StatusAnuncioDto statusAnuncioDto)
+			throws EntidadeNaoEncontradaException, ConflictException, MoedasException, MissaoException, MedalhaException {
 		return anuncioService.alterarStatusAnuncio(statusAnuncioDto);
 	}
 	
 	@ApiOperation(value = "Adiciona fotos do anúncio")
 	@PostMapping("/fotos")
-	public Anuncio adicionarFotosAnuncio(@RequestBody @Valid AnuncioFotosType anuncioFotos) throws EntidadeNaoEncontradaException {
+	public Anuncio adicionarFotosAnuncio(@RequestBody @Valid AnuncioFotosType anuncioFotos)
+			throws EntidadeNaoEncontradaException {
 		return anuncioService.cadastrarFotosAnuncio(anuncioFotos);
 	}
 
-	@ApiOperation(value = "Obtém o doador e o donatário do anúncio")
-	@GetMapping("/{idAnuncio}/doador-donatario")
-	public DoadorDonatarioType doadorDonatario(@PathVariable(value = "idAnuncio") long idAnuncio) throws EntidadeNaoEncontradaException {
-		return anuncioService.doadorDonatario(idAnuncio);
+	@ApiOperation(value = "Obtém o doador dos itens doados")
+	@GetMapping("/{idAnuncio}/doador")
+	public DoadorType doador(@PathVariable(value = "idAnuncio") long idAnuncio)
+			throws EntidadeNaoEncontradaException {
+		return anuncioService.doador(idAnuncio);
+	}
+
+	@ApiOperation(value = "Obtém o donatário dos itens recebidos")
+	@GetMapping("/{idAnuncio}/donatario")
+	public DonatarioType donatario(@PathVariable(value = "idAnuncio") long idAnuncio)
+			throws EntidadeNaoEncontradaException {
+		return anuncioService.donatario(idAnuncio);
 	}
 
 	@ApiOperation(value = "Registra interesse do usuário no anúncio")
 	@PostMapping("/interesse")
-	public void registrarInteresseAnuncio(@RequestBody @Valid InteresseType interesse) throws EntidadeNaoEncontradaException, ConflictException {
+	public void registrarInteresseAnuncio(@RequestBody @Valid InteresseType interesse)
+			throws EntidadeNaoEncontradaException, ConflictException {
 		anuncioService.registrarInteresseAnuncio(interesse);
 	}
 	
 	@ApiOperation(value = "Consulta os interessados no anúncio")
 	@GetMapping("/interessados/{idAnuncio}")
-	public List<InteressadosAnuncioType>  consultarInteressadosAnuncio(@PathVariable(value = "idAnuncio") long idAnuncio) throws EntidadeNaoEncontradaException {
+	public List<InteressadosAnuncioType> consultarInteressadosAnuncio(@PathVariable(value = "idAnuncio") long idAnuncio)
+			throws EntidadeNaoEncontradaException {
 		return anuncioService.consultarInteressadosAnuncio(idAnuncio);
+	}
+
+	@ApiOperation(value = "Retorna o indicador de itens restantes e o id do próximo item, se houver")
+	@GetMapping("/itens-restantes/{idAnuncio}")
+	public ItensRestantesType getItensRestantes(@PathVariable("idAnuncio") long idAnuncio)
+			throws EntidadeNaoEncontradaException {
+		return anuncioService.getItensRestantes(idAnuncio);
 	}
 }

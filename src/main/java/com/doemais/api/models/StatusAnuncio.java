@@ -6,16 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "StatusAnuncio")
+@Table(name = "status_anuncio")
 public class StatusAnuncio {
+
+	/* Anuncios e Pedidos usam os mesmos status */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idStatus;
-
 
 	@Column(nullable = false, length = 15)
 	private String descricaoStatus;

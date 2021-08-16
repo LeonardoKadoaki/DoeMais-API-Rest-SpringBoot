@@ -1,0 +1,8 @@
+package com.doemais.api.enums;
+
+public enum MessageEnum {
+	
+	MISSAO_CONCLUIDA,
+	ANUNCIO_CRIADO, ANUNCIO_CONCLUIDO, ANUNCIO_ERRO,
+	PEDIDO_CRIADO, PEDIDO_CONCLUIDO, PEDIDO_ERRO;
+}

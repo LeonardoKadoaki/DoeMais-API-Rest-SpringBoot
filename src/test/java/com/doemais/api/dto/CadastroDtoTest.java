@@ -10,14 +10,16 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.doemais.api.enums.GeneroEnum;
 
 
-@RunWith(SpringRunner.class)
+
+
 @SpringBootTest
-public class CadastroDtoTest {
+ class CadastroDtoTest {
 
 	@Test
-	public void TestSettersAndGetters() {
+	 void TestSettersAndGetters() {
 	CadastroDto cadastroDto = new CadastroDto();
 	
 		cadastroDto.setUserName("testando");
@@ -31,7 +33,7 @@ public class CadastroDtoTest {
 	}
 	
 	@Test
-	public void TestandoEquals() {
+	 void TestandoEquals() {
 		CadastroDto cadastroDto = new CadastroDto();
 		CadastroDto cadastroDto2 = new CadastroDto();
 		
@@ -49,7 +51,7 @@ public class CadastroDtoTest {
 	}
 	
 	@Test
-	public void TestandoNotEquals() {
+	 void TestandoNotEquals() {
 		CadastroDto cadastroDto = new CadastroDto();
 		CadastroDto cadastroDto2 = new CadastroDto();
 		
@@ -67,23 +69,26 @@ public class CadastroDtoTest {
 	}
 	
 	@Test
-	public void TestHashCode() {
+	 void TestHashCode() {
 		CadastroDto cadastroDto = new CadastroDto();
 		CadastroDto cadastroDto2 = new CadastroDto();
 		
 		
 		cadastroDto.setNome("guilherme");
 		cadastroDto.setEmail("guilherme@gmail.com");
+		cadastroDto.setGenero(GeneroEnum.M.toString());
 		
 		cadastroDto2.setNome("guilherme");
 		cadastroDto2.setEmail("guilherme@gmail.com");
+		cadastroDto.setGenero(GeneroEnum.M.toString());
+
 		
 		assertEquals(cadastroDto.hashCode(), cadastroDto2.hashCode());
 		
 	}
 	
 	@Test
-	public void TestSetterAndGetterNull() {
+	 void TestSetterAndGetterNull() {
 		CadastroDto cadastroDto = new CadastroDto();
 		
 		cadastroDto.setUserName(null);

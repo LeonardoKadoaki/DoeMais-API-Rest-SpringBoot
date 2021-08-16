@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Missao")
+@Table(name = "missao")
 public class Missao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +29,16 @@ public class Missao implements Serializable {
 	@NotNull
 	@Column(nullable = false)
 	private int moedasMissao;
+
+	public Missao(long idMissao, @NotNull @Size(min = 1, max = 90) String descricaoMissao, @NotNull int moedasMissao) {
+		this.idMissao = idMissao;
+		this.descricaoMissao = descricaoMissao;
+		this.moedasMissao = moedasMissao;
+	}
+	
+	public Missao() {
+		
+	}
 
 	public long getIdMissao() {
 		return idMissao;

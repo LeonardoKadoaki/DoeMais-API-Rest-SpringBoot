@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "EstatisticasUsuario")
+@Table(name = "estatisticas_usuario")
 public class EstatisticasUsuario implements Serializable {
 
 	
@@ -78,10 +78,4 @@ public class EstatisticasUsuario implements Serializable {
 		return "EstatisticasUsuario [idEstatisticas=" + idEstatisticas + ", totalMoedas=" + totalMoedas + ", usuario="
 				+ usuario + "]";
 	}
-	
-	
-	
-	
-	
-	
 }
